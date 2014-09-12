@@ -4,21 +4,26 @@
 
 sleep 3
 while true ; do
-	for i in $( seq 12 ) ; do
+	for i in $( seq 13 ) ; do
 		for j in $PREFERRED $( awk 'BEGIN {srand(); print int(12*rand())+1}' ) ; do
 			case $j in
 				(1)  XY="1040 420";;
 				(2)  XY="1180 490";;
-				(3)  XY="740  420";;
+				
+				(3)  XY="760  420";;
 				(4)  XY="900  490";;
 				(5)  XY="1040 560";;
 				(6)  XY="1180 630";;
+				
 				(7)  XY="620  490";;
 				(8)  XY="760  560";;
 				(9)  XY="900  630";;
-				(10) XY="1040 720";;
+				(10) XY="1040 700";;
+				
 				(11) XY="480  560";;
 				(12) XY="620  630";;
+				
+				(13) XY="480  700";;
 			esac
 			xdotool mousemove --sync $XY click 1 # select building
 			sleep 1
