@@ -1,8 +1,8 @@
 #!/bin/bash
 
-MAX_B=14
+MAX_B=16
 
-PREFERRED=$MAX_B
+#PREFERRED=$MAX_B
 
 sleep 3
 while true ; do
@@ -24,11 +24,11 @@ while true ; do
 				
 				(11) XY="480  550";;
 				(12) XY="620  620";;
-				#(x) XY="760  690";;
-				#(x) XY="900  760";;
+				(13) XY="760  690";;
+				(14) XY="900  760";;
 				
-				(13) XY="480  690";;
-				(14) XY="620  760";;
+				(15) XY="480  690";;
+				(16) XY="620  760";;
 			esac
 			xdotool mousemove --sync $XY click 1 # select building
 			sleep 1
