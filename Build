@@ -2,7 +2,7 @@
 
 MAX_B=16
 
-#PREFERRED=$MAX_B
+PREFERRED=16
 
 sleep 3
 while true ; do
@@ -35,8 +35,9 @@ while true ; do
 			xdotool click 1 # Upgrade
 			sleep 1
 			xdotool click 1 # speed up
-			sleep 15
+			sleep 1
 		done
+		sleep 15
 	done
 	xdotool mousemove --sync 1276 335 click 1 # kill Kingdom Quest
 	sleep 1
