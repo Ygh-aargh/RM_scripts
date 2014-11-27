@@ -1,28 +1,41 @@
-  1 100000 void
-  2  90000 void
-  3  80000 void
-  4  75000 void
-  5  70000 void
-  6  65000 void
-  7  60000 void
-  8  58000 void
-  9  56000 void
- 10  54000 void
- 11  52000 void
- 12  50000 void
- 13  48000 void
- 25  30000 Silis
- 27  34000 Painreaper
- 34  26500 HFire
-161   9500 war
-198   9000 Lander2
-202   9180 MadMik
-290   8300 anitadj
-367   7400 Orfeus
-377   7420 anitadj
-390   7270 Orfeus
-464   6550 Orfeus
-519   6000 Orfeus
-544   5750 Orfeus
-572   5490 ilse2
-704   4605 ilse2
+   1 100000 void
+   2  90000 void
+   3  80000 void
+   4  75000 void
+   5  70000 void
+   6  65000 void
+   7  60000 void
+   8  58000 void
+   9  56000 void
+  10  54000 void
+  11  52000 void
+  12  50000 void
+  13  48000 void
+  14  46000 void
+  15  44000 void
+  16  43000 void
+  17  42000 void
+  18  41000 void
+  19  40000 void
+  27  34000 Painreaper
+  34  26500 HFire
+  59  15000 Painreaper
+ 141   9690 DragonLady
+ 161   9500 war
+ 198   9000 Lander2
+ 202   9180 MadMik
+ 290   8300 anitadj
+ 367   7400 Orfeus
+ 377   7420 anitadj
+ 390   7270 Orfeus
+ 464   6550 Orfeus
+ 519   6000 Orfeus
+ 544   5750 Orfeus
+ 572   5490 ilse2
+ 657   4900 Orfeus
+ 691   4640 Orfeus
+ 704   4605 ilse2
+1111   3000 ilse2
+
+#25  30000 Silis
+#80 10000 Roszlyn ???
