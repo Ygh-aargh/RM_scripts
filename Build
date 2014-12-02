@@ -1,36 +1,39 @@
 #!/bin/bash
 
-MAX_B=16
+MAX_B=11
 
-PREFERRED=16
+PREFERRED=11
+
+CORR="0 30"
 
 sleep 3
 while true ; do
 	for i in $( seq $MAX_B ) ; do
 		for j in $PREFERRED $( awk 'BEGIN {srand(); print int('$MAX_B'*rand())+1}' ) ; do
 			case $j in
-				(1)  XY="1040 410";;
-				(2)  XY="1180 480";;
+				(1)  XY="960  370";;
+				(2)  XY="1120 440";;
 				
-				(3)  XY="760  410";;
-				(4)  XY="900  480";;
-				(5)  XY="1040 550";;
-				(6)  XY="1180 620";;
+				(3)  XY="700  370";;
+				(4)  XY="860  440";;
+				(5)  XY="980  510";;
+				(6)  XY="1120 580";;
 				
-				(7)  XY="620  480";;
-				(8)  XY="760  550";;
-				(9)  XY="900  620";;
-				(10) XY="1040 690";;
+				(7)  XY="560  440";;
+				(8)  XY="700  510";;
+				(9)  XY="840  580";;
+				(10) XY="980  650";;
 				
-				(11) XY="480  550";;
-				(12) XY="620  620";;
-				(13) XY="760  690";;
-				(14) XY="900  760";;
+				(11) XY="420  510";;
+				(12) XY="560  580";;
+				(13) XY="700  650";;
+				(14) XY="840  720";;
 				
-				(15) XY="480  690";;
-				(16) XY="620  760";;
+				(15) XY="420  650";;
+				(16) XY="560  720";;
 			esac
-			xdotool mousemove --sync $XY click 1 # select building
+			XYC=$( echo $XY $CORR | awk '{print $1+$3, $2+$4}' )
+			xdotool mousemove --sync $XYC click 1 # select building
 			sleep 1
 			xdotool click 1 # Upgrade
 			sleep 1
