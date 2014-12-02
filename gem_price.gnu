@@ -7,7 +7,7 @@ se log
 
 se te png
 se ou "gem_price.png"
-p [:1200][2900:] "gem_price" w lp
+p [:2000][2000:] "gem_price" w l lw 2
 se ou
 
 ! display gem_price.png &
