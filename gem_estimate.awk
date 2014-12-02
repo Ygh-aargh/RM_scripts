@@ -1,8 +1,8 @@
 #!/usr/bin/awk -f
 BEGIN {
-    n = 0;
-    p = 100000;
-    s = 0;
+    n = 0
+    p = 100000
+    s = 0
     r[1]   = "Lv. 1 gem +100k for socket"
     r[2]   = "Lv. 2 gem +100k for socket"
     r[4]   = "Lv. 3 gem +100k for socket OR 2 * Lv. 2 gems + 200k for sockets"
@@ -27,12 +27,13 @@ BEGIN {
 } {
     if ($1>n+1)
 	for (i=n+1;i<$1;i++) {
-	    e = $2**(log(i/n)/log($1/n)) * p**(log($1/i)/log($1/n))
+	    #e = $2**(log(i/n)/log($1/n)) * p**(log($1/i)/log($1/n))
+	    e = p + ($2-p)*(i-n)/($1-n)
 	    s += e
 	    printf("%5i %6.0f %12.0f %10s %s\n", i, e, s, "~", r[i]);
 	}
-    n = $1;
-    p = $2;
+    n = $1
+    p = $2
     s += p
     printf("%5i %6.0f %12.0f %10s %s\n", n, p, s, $3, r[n]);
 }
