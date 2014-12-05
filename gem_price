@@ -1,9 +1,12 @@
-   1 100000 void
-   3  80000 void
-   7  60000 void
-  15  44000 void
-  29  30000 void
-  59  15000 Painreaper
+   1 100000 void, -10k/gem
+   3  80000 void, -5k/gem
+   7  60000 void, -2k/gem
+  15  44000 void, -1k/gem
+  29  30000 void, -500/gem
+  59  15000 Painreaper, -200/gem
+  80  10800 void, -20/gem
+ 120  10000 void, -10/gem
+ 125   9950 void
  141   9690 DragonLady
  161   9500 war
  198   9000 Lander2
@@ -22,7 +25,8 @@
  774   4230 Orfeus
 1111   3000 ilse2
 
+# slightly inaccurate
 #25  30000 Silis
 #27  34000 Painreaper
 #34  26500 HFire
-#80  10000 Roszlyn ???
+#80  10000 Roszlyn

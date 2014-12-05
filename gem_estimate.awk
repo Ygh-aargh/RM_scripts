@@ -23,17 +23,19 @@ BEGIN {
     r[512] = "4 * Lv. 8 gem +400k for 4 sockets"
     r[640] = "5 * Lv. 8 gem +500k for 5 sockets"
     r[768] = "6 * Lv. 8 gem +600k for 6 sockets"
-    printf("#%4s %6s %12s %10s %s\n", "gem#", "price", "total cost", "source", "remarks");
+    printf("#%4s %6s %12s %20s %s\n", "gem#", "price", "total cost", "source", "remarks");
 } {
-    if ($1>n+1)
-	for (i=n+1;i<$1;i++) {
-	    #e = $2**(log(i/n)/log($1/n)) * p**(log($1/i)/log($1/n))
-	    e = p + ($2-p)*(i-n)/($1-n)
-	    s += e
-	    printf("%5i %6.0f %12.0f %10s %s\n", i, e, s, "~", r[i]);
-	}
-    n = $1
-    p = $2
-    s += p
-    printf("%5i %6.0f %12.0f %10s %s\n", n, p, s, $3, r[n]);
+    if ($1 !~ "#" && NF>=3) {
+        if ($1>n+1)
+            for (i=n+1;i<$1;i++) {
+                #e = $2**(log(i/n)/log($1/n)) * p**(log($1/i)/log($1/n))
+                e = p + ($2-p)*(i-n)/($1-n)
+                s += e
+                printf("%5i %6.0f %12.0f %20s %s\n", i, e, s, "~", r[i]);
+            }
+        n = $1
+        p = $2
+        s += p
+        printf("%5i %6.0f %12.0f %20s %s\n", n, p, s, $3" "$4, r[n]);
+    }
 }
