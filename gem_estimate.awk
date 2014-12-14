@@ -20,9 +20,14 @@ BEGIN {
     r[128] = "Lv. 8 gem +100k for socket"
     r[256] = "2 * Lv. 8 gem +200k for 2 sockets"
     r[384] = "3 * Lv. 8 gem +300k for 3 sockets"
-    r[512] = "4 * Lv. 8 gem +400k for 4 sockets"
+    r[512] = "4 * Lv. 8 gem +400k for 4 sockets, Lv. 10 gem +100k for socket"
     r[640] = "5 * Lv. 8 gem +500k for 5 sockets"
     r[768] = "6 * Lv. 8 gem +600k for 6 sockets"
+    r[1024] = "2 * Lv. 10 gems +200k for 2 sockets"
+    r[1536] = "3 * Lv. 10 gems +300k for 3 sockets"
+    r[2048] = "4 * Lv. 10 gems +400k for 4 sockets"
+    r[2560] = "5 * Lv. 10 gems +500k for 5 sockets"
+    r[3072] = "6 * Lv. 10 gems +600k for 6 sockets"
     printf("#%4s %6s %12s %20s %s\n", "gem#", "price", "total cost", "source", "remarks");
 } {
     if ($1 !~ "#" && NF>=3) {

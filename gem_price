@@ -2,31 +2,33 @@
    3  80000 void, -5k/gem
    7  60000 void, -2k/gem
   15  44000 void, -1k/gem
+  25  34000 Painreaper
   29  30000 void, -500/gem
+  36  26500 HFire
   59  15000 Painreaper, -200/gem
   80  10800 void, -20/gem
  120  10000 void, -10/gem
- 125   9950 void
- 141   9690 DragonLady
- 161   9500 war
- 198   9000 Lander2
  202   9180 MadMik
  290   8300 anitadj
- 367   7400 Orfeus
- 377   7420 anitadj
- 390   7270 Orfeus
- 464   6550 Orfeus
- 519   6000 Orfeus
- 544   5750 Orfeus
- 572   5490 ilse2
+ 378   7420 anitadj
+ 393   7270 Orfeus
+ 395   7250 void
+ 465   6550 Orfeus
+ 520   6000 Orfeus
+ 545   5750 Orfeus
+ 571   5490 ilse2, still -10/gem
+ 603   5170 est. -5/gem
  657   4900 Orfeus
  691   4640 Orfeus
  704   4605 ilse2
  774   4230 Orfeus
 1111   3000 ilse2
+2017   3000 ilse2
 
 # slightly inaccurate
 #25  30000 Silis
-#27  34000 Painreaper
-#34  26500 HFire
 #80  10000 Roszlyn
+#141  9690 DragonLady
+#161  9500 war
+#198  9000 Lander2
+#367  7400 Orfeus

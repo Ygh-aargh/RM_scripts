@@ -1,0 +1,4 @@
+#!/bin/bash
+
+./gem_estimate.awk gem_price > gem_est.txt
+./gem_price.gnu
