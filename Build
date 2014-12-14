@@ -1,10 +1,10 @@
 #!/bin/bash
 
-MAX_B=11
+MAX_B=9
 
-PREFERRED=11
+#PREFERRED=11
 
-CORR="0 30"
+CORR="0 10"
 
 sleep 3
 while true ; do
@@ -40,7 +40,7 @@ while true ; do
 			xdotool click 1 # speed up
 			sleep 1
 		done
-		sleep 15
+		sleep 1
 	done
 	xdotool mousemove --sync 1276 335 click 1 # kill Kingdom Quest
 	sleep 1
