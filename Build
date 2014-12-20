@@ -1,10 +1,10 @@
 #!/bin/bash
 
-MAX_B=9
+MAX_B=12
 
 #PREFERRED=11
 
-CORR="0 10"
+CORR="0 20"
 
 sleep 3
 while true ; do
