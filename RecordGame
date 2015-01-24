@@ -1,0 +1,9 @@
+#!/bin/bash
+
+OUT=""
+if [ $# -gt 0 ] ; then
+	OUT=" -o $1"
+fi
+
+sleep 2
+recordmydesktop -x 60 -y 160 --width 1500 --height 770 -fps 5 --no-sound --on-the-fly-encoding --overwrite --no-wm-check $OUT

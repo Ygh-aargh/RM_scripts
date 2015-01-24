@@ -1,0 +1,4 @@
+#!/bin/bash
+
+sleep 1
+recordmydesktop -x 100 -y 660 --width 300 --height 260 -fps 1 --no-sound --on-the-fly-encoding --overwrite --no-wm-check -o chat.ogv
