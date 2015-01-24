@@ -3,5 +3,5 @@
 sleep 3
 while true ; do
 	xdotool click 1
-	sleep 61
+	sleep 60.1
 done
