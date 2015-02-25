@@ -34,6 +34,7 @@ print "influence on own troop on attack: ", a[0][0][0]
 print "influence of opponent's troop on attack: ", a[0][1][0]
 print "general's base attack: ", a[0][2][0]
 print "sum squares: ",a[1][0]," L2?: ",np.sqrt(a[1][0]/np.sum(y*y))
+print "#samples: ",len(y)
 
 excl=[]
 for i in range(0, len(data)):
@@ -51,3 +52,4 @@ print "\ninfluence on our troop on opponent's attack:", a[0][0][0]
 print "influence of opponent's troop on attack:", a[0][1][0]
 print "opponent's base attack:", a[0][2][0]
 print "sum squares: ",a[1][0]," L2?: ",np.sqrt(a[1][0]/np.sum(y*y))
+print "#samples: ",len(y)
