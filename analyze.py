@@ -28,11 +28,12 @@ for i in range(0, len(data)):
 
 x=np.transpose(np.vstack((np.delete(data[:, 8], excl), np.delete(data[:, 17], excl), np.ones(len(data)-len(excl)))))
 y=np.vstack(np.delete(data[:, 13], excl))
-np.linalg.lstsq(x,y)
+a=np.linalg.lstsq(x,y)
 
-print "influence on own troop on attack:", np.linalg.lstsq(x,y)[0][0][0]
-print "influence of opponent's troop on attack:", np.linalg.lstsq(x,y)[0][1][0]
-print "general's base attack:", np.linalg.lstsq(x,y)[0][2][0]
+print "influence on own troop on attack: ", a[0][0][0]
+print "influence of opponent's troop on attack: ", a[0][1][0]
+print "general's base attack: ", a[0][2][0]
+print "sum squares: ",a[1][0]," L2?: ",np.sqrt(a[1][0]/np.sum(y*y))
 
 excl=[]
 for i in range(0, len(data)):
@@ -44,9 +45,9 @@ for i in range(0, len(data)):
 
 x=np.transpose(np.vstack((np.delete(data[:, 8], excl), np.delete(data[:, 17], excl), np.ones(len(data)-len(excl)))))
 y=np.vstack(np.delete(data[:, 4], excl))
-np.linalg.lstsq(x,y)
+a=np.linalg.lstsq(x,y)
 
-print "\ninfluence on our troop on opponent's attack:", np.linalg.lstsq(x,y)[0][0][0]
-print "influence of opponent's troop on attack:", np.linalg.lstsq(x,y)[0][1][0]
-print "opponent's base attack:", np.linalg.lstsq(x,y)[0][2][0]
-
+print "\ninfluence on our troop on opponent's attack:", a[0][0][0]
+print "influence of opponent's troop on attack:", a[0][1][0]
+print "opponent's base attack:", a[0][2][0]
+print "sum squares: ",a[1][0]," L2?: ",np.sqrt(a[1][0]/np.sum(y*y))
