@@ -26,6 +26,10 @@ for line in sys.stdin:
 k6=np.ones(7)/6.
 k6[0]=0.
 
-for steps in steplist:
+dictable=dict()
+for steps in set(steplist):
     stepdistr=length2steps(steps, k6)
-    print steps, ":", stepdistr
+    dictable[steps]=stepdistr
+
+for i in sorted(dictable):
+    print i, ":", dictable[i]
