@@ -18,6 +18,12 @@ def length2steps(length, dice):
     stepdistr.append(ptable[length:].sum())
     return stepdistr
 
+def convolve_two(t1, t2):
+    t = np.zeros(t1.size+t2.size-1)
+    for i in range(t1.size):
+        t[i:i+t2.size] += t1[i] * t2
+    return t
+
 steplist=[]
 for line in sys.stdin:
     for s in line.split():
@@ -33,3 +39,13 @@ for steps in set(steplist):
 
 for i in sorted(dictable):
     print i, ":", dictable[i]
+
+t=np.ones(1)
+for t1 in steplist:
+    t=convolve_two(t, np.asarray(dictable[t1]))
+
+print
+
+for i in range(t.size):
+    if (t[i]> 1e-3 and abs(t[:i+1].sum()-0.5) < 0.45):
+        print i, t[i], t[:i+1].sum()
