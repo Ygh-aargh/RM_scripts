@@ -48,5 +48,5 @@ for t1 in steplist:
 print "\nMost probable number of moves for a set of routes with lengths ",steplist,"\nn moves, probability of n moves, probability of up to n moves\n%4s %7s%% %7s%%" % ('n','p(n)','p(m<=n)')
 
 for i in range(t.size):
-    if (t[i]> 1e-3 and abs(t[:i+1].sum()-0.5) < 0.45):
+    if ((t[i]> 1e-3 and abs(t[:i+1].sum()-0.5) < 0.45) or t[i]>0.05):
         print "%4d %7.1f%% %7.1f%%" % (i, 100*t[i], 100*t[:i+1].sum())
