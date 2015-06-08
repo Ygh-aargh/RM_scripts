@@ -1,0 +1,10 @@
+#!/bin/bash
+
+sleep 3
+
+while true ; do
+	xdotool mousemove --sync 1126 739 click 1 # Claim All
+	sleep 5	
+	xdotool mousemove --sync 983 738 click 1 # Start All
+	sleep 1000
+done
