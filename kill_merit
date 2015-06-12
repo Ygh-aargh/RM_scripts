@@ -1,3 +1,12 @@
+#!/usr/bin/gnuplot -persist
+f(x) = a + b * sqrt(x)
+fit [1:] f(x) "kill_merit" u ($1):($2) via a, b
+se ke le to
+se xla "M kills"
+se yla "merit"
+p [][-200:] "kill_merit" u ($1):($2) t "data", "" u ($1):(($2-f($1))*10) t "residual * 10", -200+700*sqrt(x)
+exit
+
 #Mkills	merit
 0.051	40
 0.085	70
@@ -27,6 +36,6 @@
 14.6	2460
 15.1	2520
 17.0	2680
+17.7	2740
 19.7	2890
 24.5	3260
-38.3	4140
