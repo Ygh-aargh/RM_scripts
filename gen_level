@@ -101,7 +101,7 @@
 101	8925000
 102	9555000
 103	10920000
-104
-105
+104	12285000
+105	13020000
 
 # awk '{n+=$2; if (NF>=2) print $1+1, $2, n, int(n/500000)+1}' gen_level | awk 'BEGIN {o=1} {if (o != $4) print old; o=$4; old=$0}' | awk 'BEGIN {print "level", "#AC"} {print $1, 10*$4}'|column -t
