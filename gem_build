@@ -1,0 +1,61 @@
+#!/usr/bin/gnuplot -persist
+se xla "L1 gems to build"
+se xtics (0, "" 64 1, "" 128 1, "" 256 1, "" 512, "" 1024, \
+        "2k" 2048, "4k" 4096, "8k" 8192, "16k" 16384, \
+        "" 16884 1, "" 17484 1, "" 18284 1, 19284, \
+        "" 20484 1, "" 21984 1, "" 23784 1, "" 25984 1, 28584, \
+        "" 31684 1)
+se mxtics 4
+se yla "equivalent treasure levels"
+se ytics (0, "" 6 1, "" 8 1, "" 11 1, "" 15 1, "" 21 1, \
+        30, 45, 60, 80, 100, 120, \
+        "" 125 1, "" 130 1, "" 135 1, 140, \
+        "" 145 1, "" 150 1, "" 155 1, "" 160 1, 165, \
+        "" 170 1)
+se pointsize 1.7
+se ke bo
+se label 1 "  L10"       at 512,    26 left
+se label 2 "  L11"       at 1024,   41 left
+se label 3 "  L12"       at 2048,   56 left
+se label 4 "  L13"       at 4096,   76 left
+se label 5 "  L14"       at 8192,   96 left
+se label 6 "  L15 / L1*" at 16384, 116 left
+se label 7 "  L5*"       at 19284, 136 left
+se label 8 "  L10*"      at 28584, 161 left
+se label 21 "*5  for  attack"  at 1024, 170 left
+se label 22 "*3  for  defense" at 1024, 160 left
+se label 23 "*8  for  troops"  at 1024, 150 left
+se te png size 800,500
+se ou "gem_build.png"
+p [:35000][:180] "gem_build" u ($2):($1) eve :::1::1 t "classic gems" w lp pt 4, "" u 2:1 eve :::2::2 t "star gems" w lp pt 3
+se ou
+exit
+
+0    0
+1    1
+2    2
+3    4
+4    8
+6    16
+8    32
+11   64
+15   128
+21   256
+30   512
+45   1024
+60   2048
+80   4096
+100  8192
+120  16384
+
+120  16384 *
+125  16884
+130  17484
+135  18284
+140  19284 *
+145  20484
+150  21984
+155  23784
+160  25984
+165  28584 *
+170  31684
