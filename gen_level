@@ -2,7 +2,11 @@
 se xla "level"
 se yla "# 50k books"
 se log y
-p [38:114][1:10000] "< awk '{n+=$2; if (NF>=2) print $1+1, $2, n, (n/50000)}' gen_level | grep -v awk" u ($1):($4) t ""
+se te png
+se ou "gen_level.png"
+p [38:120][1:10000] "< awk '{n+=$2; if (NF>=2 && $1<=113) print $1+1, $2, n, (n/50000)}' gen_level | grep -v awk" \
+u ($1):($4) t ""
+se ou
 exit
 
 1	1
