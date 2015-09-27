@@ -1,11 +1,12 @@
 #!/usr/bin/gnuplot -persist
 se xla "level"
-se yla "# 50k books"
+se yla "amount of 50k (green) books required"
 se log y
 se te png
 se ou "gen_level.png"
-p [38:120][1:10000] "< awk '{n+=$2; if (NF>=2 && $1<=113) print $1+1, $2, n, (n/50000)}' gen_level | grep -v awk" \
-u ($1):($4) t ""
+se ke le Le rev
+p [38:120][1:10000] "< awk '{n+=$2; if (NF>=2 && $1<=120) print $1+1, $2, n, (n/50000)}' gen_level | grep -v awk" \
+u ($1):($4) t "from level 0", "" u ($1):($2/50000) t "from previous level"
 se ou
 exit
 
@@ -124,19 +125,19 @@ exit
 113	22050000
 114	22890000
 115	23520000
-116
-117
-118
-119
+116	24360000
+117	25200000
+118	25830000
+119	26460000
 120
 121	37170000
-122
-123
+122	37800000
+123	38430000
 124	39060000
-125
+125	39690000
 126
 127
-128
+128	41370000
 129
 130
 
