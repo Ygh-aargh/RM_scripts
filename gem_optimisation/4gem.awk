@@ -28,7 +28,7 @@ BEGIN {
   t[26]=170; g[26]=31684;
   t[27]=175; g[27]=35384;
   t[28]=180; g[28]=39784;
-  t[29]=190; g[29]=44984;
+  t[29]=185; g[29]=44984;
   t[30]=200; g[30]=51084;
   max=30;
   for (i=1; i<=max; i++)
@@ -36,7 +36,7 @@ BEGIN {
       for (k=j; k<=max; k++)
         for (l=k; l<=max; l++)
           print 3*(t[i]+t[j])+8*(t[k]+t[l]), g[i]+g[j]+g[k]+g[l], i-1, j-1, k-1, l-1;
-  # ./4gem.awk | sort -n -k 2 | awk 'BEGIN {o=-1} {if ($1>o) { print ; o=$1}}'| column -t | grep -C 100 -E '{|15|19|24|}' > __
+  # ./4gem.awk | sort -n -k 2 | awk 'BEGIN {o=-1} {if ($1>o) { print ; o=$1}}'| column -t | grep -C 100 -E '{|15|19|24|29|}' > __
   # gnuplot
   # p "__" u 2:1, "" u 2:($3*10), "" u 2:($4*10), "" u 2:($5*10), "" u 2:($6*10)
 }
