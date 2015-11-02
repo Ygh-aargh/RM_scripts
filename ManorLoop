@@ -1,0 +1,24 @@
+#!/bin/bash
+
+sleep 3
+
+for i in $( seq 11 ) ; do
+	xdotool mousemove --sync 804 645 click 1 # Manor
+	sleep 1
+	xdotool mousemove --sync 886 613 click 1 # Summon
+	sleep 1
+	xdotool mousemove --sync 956 724 click 1 # uncheck
+	sleep 2
+	xdotool mousemove --sync 956 764 click 1 # uncheck
+	sleep 640
+	xdotool mousemove --sync 180 495 click 1
+	sleep 2 
+	xdotool mousemove --sync 200 530 click 1 # Click to gain food/EXP
+	sleep 2
+	xdotool mousemove --sync 200 570 click 1
+	sleep 2
+	xdotool mousemove --sync 200 615 click 1
+	sleep 2
+	#xdotool mousemove --sync 200 650 click 1
+	sleep 15
+done
