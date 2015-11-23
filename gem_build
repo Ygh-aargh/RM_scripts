@@ -5,30 +5,35 @@ se xtics (0, "" 64 1, "" 128 1, "" 256 1, "" 512, "" 1024, \
 se mxtics 4
 se x2tics ("" 16884 1, "" 17484 1, "" 18284 1, 19284, \
         "" 20484 1, "" 21984 1, "" 23784 1, "" 25984 1, 28584, \
-        "" 31684 1, "" 35384 1, "" 39784 1, "" 44984 1, 51084 )
+        "" 31684 1, "" 35384 1, "" 39784 1, "" 44984 1, 51084, \
+        "" 58284 1, "" 61156 1, "" 64404 1, "" 67904 1, 71684, \
+        "" 75774 )
 se yla "equivalent treasure levels"
 se ytics (0, "" 6 1, "" 8 1, "" 11 1, "" 15 1, "" 21 1, \
         30, 45, 60, 80, 100, 120, \
         "" 125 1, "" 130 1, "" 135 1, 140, \
         "" 145 1, "" 150 1, "" 155 1, "" 160 1, 165, \
-        "" 170 1, "" 175 1, "" 180 1, "" 185 1, 200 )
+        "" 170 1, "" 175 1, "" 180 1, "" 185 1, 200, \
+        "" 205 1, "" 210 1, "" 215 1, "" 220 1, 230, \
+        "" 235 1 )
 se pointsize 1.7
 se ke bo
-se label 1 "  L10"       at 512,    26 left
-se label 2 "  L11"       at 1024,   41 left
-se label 3 "  L12"       at 2048,   56 left
-se label 4 "  L13"       at 4096,   76 left
-se label 5 "  L14"       at 8192,   96 left
-se label 6 "  L15 / L1*" at 16384, 116 left
-se label 7 "  L5*"       at 19284, 136 left
-se label 8 "  L10*"      at 28584, 161 left
-se label 9 "  L15*"      at 51084, 196 left
-se label 21 "*5  for  attack"  at 1024, 190 left
-se label 22 "*3  for  defense" at 1024, 180 left
-se label 23 "*8  for  troops"  at 1024, 170 left
+se label 1  "  L10"       at 512,    26 left
+se label 2  "  L11"       at 1024,   41 left
+se label 3  "  L12"       at 2048,   56 left
+se label 4  "  L13"       at 4096,   76 left
+se label 5  "  L14"       at 8192,   96 left
+se label 6  "  L15 / L1*" at 16384, 116 left
+se label 7  "  L5*"       at 19284, 136 left
+se label 8  "  L10*"      at 28584, 161 left
+se label 9  "  L15*"      at 51084, 196 left
+se label 10 "  L20*"      at 71684, 226 left
+se label 21 "*5  for  attack"  at 2048, 220 left
+se label 22 "*3  for  defense" at 2048, 210 left
+se label 23 "*8  for  troops"  at 2048, 200 left
 se te png size 800,500
 se ou "gem_build.png"
-p [:57000][:205] "gem_build" u ($2):($1) eve :::1::1 t "classic gems" w lp pt 4, "" u 2:1 eve :::2::2 t "star gems" w lp pt 3
+p [:80000][:240] "gem_build" u ($2):($1) eve :::1::1 t "classic gems" w lp pt 4, "" u 2:1 eve :::2::2 t "star gems" w lp pt 3
 se ou
 exit
 
@@ -64,3 +69,9 @@ exit
 180  39784
 185  44984
 200  51084 *
+205  58284
+210  61156 !
+215  64404 !
+220  67904 !
+230  71684 !
+235  75774 !
