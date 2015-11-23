@@ -1,4 +1,12 @@
 #!/bin/bash
 
-sleep 1
-recordmydesktop -x 100 -y 660 --width 300 --height 260 -fps 1 --no-sound --on-the-fly-encoding --overwrite --no-wm-check -o chat.ogv
+POS=" -x 100 -y 660 "
+if [ $# -gt 0 ] ; then
+	if [ $1 == "-kabam" ]; then
+		POS=" -x 110 -y 720 "
+	fi
+fi
+
+reset
+sleep 3
+recordmydesktop $POS --width 320 --height 260 -fps 1 --no-sound --on-the-fly-encoding --overwrite --no-wm-check -o chat.ogv
