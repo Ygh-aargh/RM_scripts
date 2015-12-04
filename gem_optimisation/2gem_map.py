@@ -127,7 +127,7 @@ for i in gl:
 
 labels = []
 for i in gl:
-    labels.append("2 "+i+" = {0}".format(levels[gl.index(i)]))
+    labels.append("{0}".format(levels[gl.index(i)])+" = 2 "+i )
 
 g1 = 24
 g2 = 29
@@ -137,44 +137,43 @@ for i in levels:
     if (i > gsum and prev < gsum):
         ii = levels.index(i)
         levels.insert(ii, gsum)
-        labels.insert(ii, gemprop[g1][0]+" + "+gemprop[g2][0]+" = {0}".format(gsum))
+        labels.insert(ii, "{0}".format(gsum)+" = "+gemprop[g1][0]+" + "+gemprop[g2][0])
         break
     prev = i
 
-quality = {
-    "optimum": "white",
-    "<= opt + 1024": (0.6, 1.0, 0.6),
-    "<= opt + 2048": (0.2, 1.0, 0.2),
-    "<= opt + 4096": (0.0, 0.7, 0.0),
-    ">  opt + 4096": (0.0, 0.4, 0.0),
-    "TL worse by  5": (0.0, 0.5, 1.0),
-    "TL worse by 10": (0.0, 0.0, 0.8),
-    "TL worse by 15": (0.5, 0.0, 0.2),
-    "TL worse by 20": (0.3, 0.0, 0.0)
-}
+opt = ( "optimum", "white" )
+opt1k = ( "$\leqslant$ opt + 1024", (0.6, 1.0, 0.6) )
+opt2k = ( "$\leqslant$ opt + 2048", (0.2, 1.0, 0.2) )
+opt4k = ( "$\leqslant$ opt + 4096", (0.0, 0.7, 0.0) )
+nonopt = ( "$>$ opt + 4096", (0.0, 0.4, 0.0) )
+tl5 = ( "TL worse by  5", (0.0, 0.5, 1.0) )
+tl10 = ( "TL worse by 10", (0.0, 0.0, 0.8) )
+tl15 = ( "TL worse by 15", (0.5, 0.0, 0.2) )
+tl20 = ( "TL worse by 20", (0.3, 0.0, 0.0) )
+quality = [ opt, opt1k, opt2k, opt4k, nonopt, tl5, tl10, tl15, tl20 ]
 
 ax = plt.gca()
 for g in g12:
     c = None
     if (g[5] == 0):
         if (g[4] == 0):
-            c=quality["optimum"]
+            c = opt[1]
         elif (g[4] <= 1024):
-            c=quality["<= opt + 1024"]
+            c = opt1k[1]
         elif (g[4] <= 2048):
-            c=quality["<= opt + 2048"]
+            c = opt2k[1]
         elif (g[4] <= 4096):
-            c=quality["<= opt + 4096"]
+            c = opt4k[1]
         else:
-            c=quality[">  opt + 4096"]
+            c = nonopt[1]
     elif (g[5] <= 5):
-        c=quality["TL worse by  5"]
+        c = tl5[1]
     elif (g[5] <= 10):
-        c=quality["TL worse by 10"]
+        c = tl10[1]
     elif (g[5] <= 15):
-        c=quality["TL worse by 15"]
+        c = tl15[1]
     elif (g[5] <= 20):
-        c=quality["TL worse by 20"]
+        c = tl20[1]
     if (c):
         ax.add_patch(patches.Rectangle((g[0]-.5, g[1]-.5), 1., 1., color=c ))
 
@@ -182,7 +181,7 @@ CS = plt.contour(X, Y, GC, levels )
 artists = CS.legend_elements()[0]
 plt.gca().add_artist(plt.legend(artists, labels, loc='upper right', bbox_to_anchor=(1.0, 1.0), mode="expand", frameon = False, fontsize="small"))
 
-ax.annotate("gem cost equal to:", xy=(0,0), xytext=(1.05, 1.0), xycoords="axes fraction")
+ax.annotate("gem cost equal to:", xy=(0,0), xytext=(1.025, 1.0), xycoords="axes fraction")
 plt.ylabel("left gem")
 plt.xlabel("right gem")
 plt.axis([10.5, 36.5, 10.5, 36.5])
@@ -194,9 +193,9 @@ ax.set_aspect('equal', 'box', 'W')
 
 rect = []
 labels = []
-for i in [ "optimum", "<= opt + 1024", "<= opt + 2048", "<= opt + 4096", ">  opt + 4096", "TL worse by  5", "TL worse by 10", "TL worse by 15", "TL worse by 20" ]:
-    rect.append(patches.Rectangle([0., 0.],1., 1., color=quality[i]))
-    labels.append(i)
+for i in quality:
+    rect.append(patches.Rectangle([0., 0.],1., 1., color=i[1]))
+    labels.append(i[0])
 
 plt.legend(rect, labels, loc='lower right', bbox_to_anchor=(1.0, 0.), mode="expand", frameon = False, fontsize="medium")
 
