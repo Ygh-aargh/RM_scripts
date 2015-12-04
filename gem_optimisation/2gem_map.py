@@ -161,8 +161,8 @@ for g in g12:
     if (c):
         ax.add_patch(patches.Rectangle((g[0]-.5, g[1]-.5), 1., 1., color=c ))
 
-oversample = 10
-x = y = np.arange(-5./oversample, len(gemprop)-5./oversample, 1./oversample)
+oversample = 5
+x = y = np.arange(-.5+.5/oversample, len(gemprop)-.5+.5/oversample, 1./oversample)
 X, Y = np.meshgrid(x, y)
 #DGC=np.empty_like(X)
 #DTL=np.empty_like(X)
