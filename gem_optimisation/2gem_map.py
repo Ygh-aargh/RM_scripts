@@ -1,6 +1,12 @@
 #!/usr/bin/python
 
-gemprop=[["L0", 0, 0],
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+
+# gem level name, treasure level, gem count
+gemprop = [
+["L0", 0, 0],
 ["L1", 1, 1],
 ["L2", 2, 2],
 ["L3", 3, 4],
@@ -37,55 +43,150 @@ gemprop=[["L0", 0, 0],
 ["L20*", 230, 71804],
 ["L21*", 235, 75894],
 ["L22*", 240, 80314],
-["L23*", 245, 85084],
-["L24*", 250, 90224],
-["L25*", 260, 95724]]
+#["L23*", 245, 85084],
+#["L24*", 250, 90224],
+#["L25*", 260, 95724]
+]
 
-gi=3
+# gemprop[gi] = generalized gem level
+gi = 3
 for g in gemprop:
     g.append(gemprop.index(g))
 
-g12=[]
+# all gem combinations, a bit redundant but it is small array
+g12 = []
 for g1 in gemprop:
     for g2 in gemprop:
         g12.append([g1[gi], g2[gi], g1[1]+g2[1], g1[2]+g2[2]])
 
-tl=2
-gc=3
+# g12[tl] = effective treasure level of 2 gems
+# g12[gc] = sum of gem costs of 2 gems
+tl = 2
+gc = 3
 
-def getKeyTL(item):
-    return item[tl]
+# find lowest gem costs for given effective treasure levels
+# some treasure levels are more costly than some higher ones
+lg = {}
+for gg in g12:
+    if (gg[tl] in lg):
+        if (lg[gg[tl]] > gg[gc]):
+            lg[gg[tl]] = gg[gc]
+    else:
+        lg[gg[tl]] = gg[gc]
 
-def getKeyGC(item):
-    return item[gc]
+maxstep=0
+for i in range(1, len(gemprop)-1):
+    if (gemprop[i][1]-gemprop[i-1][1] > maxstep):
+        maxstep = gemprop[i][1]-gemprop[i-1][1]
+# maxstep = 20
 
-g12s=sorted(g12, key=getKeyGC)
+# now remove unoptimal things
+lg_opt = lg.copy()
+for i in lg:
+    for l in range(i-1, max(0, i-maxstep), -1):
+        if (l in lg_opt):
+            if (lg[l] > lg[i]):
+                del lg_opt[l]
 
-g12ss=[]
-low=g12s[0]
-max=low[tl]
-for gg in g12s:
-    if (gg[tl]>max):
-        if (g12s.index(low) != g12s.index(gg)-1):
-            g12ss.append(sorted(g12s[g12s.index(low):g12s.index(gg)], key=getKeyGC))
+# determine how far it is in terms of used gems and treasure level
+# very unoptimal implementation, use some sorting to have it faster
+for gg in g12:
+    dgc=0
+    dtl=0
+    for i in lg_opt:
+        if (gg[tl] <= i):
+            dgc = max(dgc, gg[gc]-lg_opt[i])
+        if (gg[gc] >= lg_opt[i]):
+            dtl = max(dtl, i-gg[tl])
+    gg.append(dgc)
+    gg.append(dtl)
+
+x = y = np.arange(0, len(gemprop), 1)
+X, Y = np.meshgrid(x, y)
+DGC=np.empty_like(X)
+DTL=np.empty_like(X)
+TL=np.empty_like(X)
+GC=np.empty_like(X)
+for o in g12:
+    GC[o[0]][o[1]] = o[gc]
+    TL[o[0]][o[1]] = o[tl]
+    DGC[o[0]][o[1]] = o[4]
+    DTL[o[0]][o[1]] = o[5]
+
+#plt.imshow(np.minimum(DTL,20), interpolation='nearest'); plt.show()
+#plt.imshow(np.minimum(DGC,8192), interpolation='nearest'); plt.show()
+
+gl = [ "L14", "L5*", "L10*", "L15*", "L20*" ]
+levels = []
+ticks = []
+for i in gl:
+    for g in gemprop:
+        if (g[0] == i):
+            levels.append(2*g[2])
+            ticks.append(g[gi])
+
+labels = []
+for i in gl:
+    labels.append("2 "+i+" = {0}".format(levels[gl.index(i)]))
+
+quality = {
+    "optimum": "white",
+    "<= opt + 1024": (0.6, 1.0, 0.6),
+    "<= opt + 2048": (0.2, 1.0, 0.2),
+    "<= opt + 4096": (0.0, 0.7, 0.0),
+    ">  opt + 4096": (0.0, 0.4, 0.0),
+    "TL worse by  5": (0.0, 0.5, 1.0),
+    "TL worse by 10": (0.0, 0.0, 0.8),
+    "TL worse by 15": (0.5, 0.0, 0.2),
+    "TL worse by 20": (0.3, 0.0, 0.0)
+}
+
+ax = plt.gca()
+for g in g12:
+    c = None
+    if (g[5] == 0):
+        if (g[4] == 0):
+            c=quality["optimum"]
+        elif (g[4] <= 1024):
+            c=quality["<= opt + 1024"]
+        elif (g[4] <= 2048):
+            c=quality["<= opt + 2048"]
+        elif (g[4] <= 4096):
+            c=quality["<= opt + 4096"]
         else:
-            g12ss.append([low])
-        low=gg
-        max=low[tl]
+            c=quality[">  opt + 4096"]
+    elif (g[5] <= 5):
+        c=quality["TL worse by  5"]
+    elif (g[5] <= 10):
+        c=quality["TL worse by 10"]
+    elif (g[5] <= 15):
+        c=quality["TL worse by 15"]
+    elif (g[5] <= 20):
+        c=quality["TL worse by 20"]
+    if (c):
+        ax.add_patch(patches.Rectangle((g[0]-.5, g[1]-.5), 1., 1., color=c ))
 
-if (g12s.index(low) != g12s.index(gg)-1):
-    g12ss.append(sorted(g12s[g12s.index(low):], key=getKeyGC))
-else:
-    g12ss.append([low])
+CS = plt.contour(X, Y, GC, levels )
+artists = CS.legend_elements()[0]
+plt.gca().add_artist(plt.legend(artists, labels, loc='upper right', bbox_to_anchor=(1.0, 1.0), mode="expand", frameon = False, fontsize="medium"))
 
-for o in g12ss:
-    oo=o[0]
-    print gemprop[oo[0]][0], gemprop[oo[1]][0], oo[2], oo[3]
+ax.annotate("gem cost equal to:", xy=(0,0), xytext=(1.05, 1.0), xycoords="axes fraction")
+plt.ylabel("left gem")
+plt.xlabel("right gem")
+plt.axis([10.5, 36.5, 10.5, 36.5])
+plt.xticks(ticks, gl)
+plt.yticks(ticks, gl)
+ax.tick_params(direction='out', length=6, width=2)
+ax.set_axis_bgcolor("black")
+ax.set_aspect('equal', 'box', 'W')
 
-for o in g12ss:
-    ref_tl=o[0][tl]
-    ref_gc=o[0][gc]
-    for oo in o:
-        oo.append(oo[tl]-ref_tl)
-        oo.append(oo[gc]-ref_gc)
+rect = []
+labels = []
+for i in [ "optimum", "<= opt + 1024", "<= opt + 2048", "<= opt + 4096", ">  opt + 4096", "TL worse by  5", "TL worse by 10", "TL worse by 15", "TL worse by 20" ]:
+    rect.append(patches.Rectangle([0., 0.],1., 1., color=quality[i]))
+    labels.append(i)
 
+plt.legend(rect, labels, loc='lower right', bbox_to_anchor=(1.0, 0.), mode="expand", frameon = False, fontsize="medium")
+
+#plt.show()
+plt.savefig("gem_build_opt.png", facecolor="lightgray")
