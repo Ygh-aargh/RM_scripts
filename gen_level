@@ -2,6 +2,7 @@
 se xla "level"
 se yla "amount of 50k (green) books required"
 se log y
+se grid
 se te png
 se ou "gen_level.png"
 se ke le Le rev
@@ -129,7 +130,7 @@ exit
 117	25200000
 118	25830000
 119	26460000
-120	27000000.0
+120	27090000
 121	37170000
 122	37800000
 123	38430000
