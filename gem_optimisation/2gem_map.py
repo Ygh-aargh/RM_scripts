@@ -114,17 +114,16 @@ labels = []
 for i in gl:
     labels.append("{0}".format(levels[gl.index(i)])+" = 2 "+i )
 
-g1 = 24
-g2 = 29
-gsum = gemprop[g1][2] + gemprop[g2][2]
-prev = levels[0]
-for i in levels:
-    if (i > gsum and prev < gsum):
-        ii = levels.index(i)
-        levels.insert(ii, gsum)
-        labels.insert(ii, "{0}".format(gsum)+" = "+gemprop[g1][0]+" + "+gemprop[g2][0])
-        break
-    prev = i
+for g1, g2 in [ (24, 29), (14, 19), (29, 34) ]:
+    gsum = gemprop[g1][2] + gemprop[g2][2]
+    prev = levels[0]
+    for i in levels:
+        if (i > gsum and prev < gsum):
+            ii = levels.index(i)
+            levels.insert(ii, gsum)
+            labels.insert(ii, "{0}".format(gsum)+" = "+gemprop[g1][0]+" + "+gemprop[g2][0])
+            break
+        prev = i
 
 opt = ( "optimum", "white" )
 opt1k = ( "$\leqslant$ opt + 1024", (0.6, 1.0, 0.6) )
