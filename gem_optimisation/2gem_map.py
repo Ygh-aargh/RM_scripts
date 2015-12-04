@@ -43,7 +43,7 @@ gemprop = [
 ["L20*", 230, 71804],
 ["L21*", 235, 75894],
 ["L22*", 240, 80314],
-#["L23*", 245, 85084],
+["L23*", 245, 85084],
 #["L24*", 250, 90224],
 #["L25*", 260, 95724]
 ]
@@ -129,6 +129,18 @@ labels = []
 for i in gl:
     labels.append("2 "+i+" = {0}".format(levels[gl.index(i)]))
 
+g1 = 24
+g2 = 29
+gsum = gemprop[g1][2] + gemprop[g2][2]
+prev = levels[0]
+for i in levels:
+    if (i > gsum and prev < gsum):
+        ii = levels.index(i)
+        levels.insert(ii, gsum)
+        labels.insert(ii, gemprop[g1][0]+" + "+gemprop[g2][0]+" = {0}".format(gsum))
+        break
+    prev = i
+
 quality = {
     "optimum": "white",
     "<= opt + 1024": (0.6, 1.0, 0.6),
@@ -168,7 +180,7 @@ for g in g12:
 
 CS = plt.contour(X, Y, GC, levels )
 artists = CS.legend_elements()[0]
-plt.gca().add_artist(plt.legend(artists, labels, loc='upper right', bbox_to_anchor=(1.0, 1.0), mode="expand", frameon = False, fontsize="medium"))
+plt.gca().add_artist(plt.legend(artists, labels, loc='upper right', bbox_to_anchor=(1.0, 1.0), mode="expand", frameon = False, fontsize="small"))
 
 ax.annotate("gem cost equal to:", xy=(0,0), xytext=(1.05, 1.0), xycoords="axes fraction")
 plt.ylabel("left gem")
@@ -189,4 +201,4 @@ for i in [ "optimum", "<= opt + 1024", "<= opt + 2048", "<= opt + 4096", ">  opt
 plt.legend(rect, labels, loc='lower right', bbox_to_anchor=(1.0, 0.), mode="expand", frameon = False, fontsize="medium")
 
 #plt.show()
-plt.savefig("gem_build_opt.png", facecolor="lightgray")
+plt.savefig("gem_build_opt.png", facecolor="silver")
