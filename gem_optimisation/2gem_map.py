@@ -101,21 +101,6 @@ for gg in g12:
     gg.append(dgc)
     gg.append(dtl)
 
-x = y = np.arange(0, len(gemprop), 1)
-X, Y = np.meshgrid(x, y)
-DGC=np.empty_like(X)
-DTL=np.empty_like(X)
-TL=np.empty_like(X)
-GC=np.empty_like(X)
-for o in g12:
-    GC[o[0]][o[1]] = o[gc]
-    TL[o[0]][o[1]] = o[tl]
-    DGC[o[0]][o[1]] = o[4]
-    DTL[o[0]][o[1]] = o[5]
-
-#plt.imshow(np.minimum(DTL,20), interpolation='nearest'); plt.show()
-#plt.imshow(np.minimum(DGC,8192), interpolation='nearest'); plt.show()
-
 gl = [ "L14", "L5*", "L10*", "L15*", "L20*" ]
 levels = []
 ticks = []
@@ -177,11 +162,29 @@ for g in g12:
     if (c):
         ax.add_patch(patches.Rectangle((g[0]-.5, g[1]-.5), 1., 1., color=c ))
 
-CS = plt.contour(X, Y, GC, levels )
+oversample = 10
+x = y = np.arange(-5./oversample, len(gemprop)-5./oversample, 1./oversample)
+X, Y = np.meshgrid(x, y)
+#DGC=np.empty_like(X)
+#DTL=np.empty_like(X)
+#TL=np.empty_like(X)
+GC=np.empty_like(X)
+for o in g12:
+    for i in range(oversample*o[0], oversample*(o[0]+1)):
+        for j in range(oversample*o[1], oversample*(o[1]+1)):
+            GC[i][j] = o[gc]
+            #TL[i][j] = o[tl]
+            #DGC[i][j] = o[4]
+            #DTL[i][j] = o[5]
+
+#plt.imshow(np.minimum(DTL,20), interpolation='nearest'); plt.show()
+#plt.imshow(np.minimum(DGC,8192), interpolation='nearest'); plt.show()
+
+CS = plt.contour(X, Y, GC, levels, linewidths=2 )
 artists = CS.legend_elements()[0]
 plt.gca().add_artist(plt.legend(artists, labels, loc='upper right', bbox_to_anchor=(1.0, 1.0), mode="expand", frameon = False, fontsize="small"))
 
-ax.annotate("gem cost equal to:", xy=(0,0), xytext=(1.025, 1.0), xycoords="axes fraction")
+ax.annotate("gem cost less or equal to:", xy=(0,0), xytext=(1.025, 1.0), xycoords="axes fraction", fontsize="small")
 plt.ylabel("left gem")
 plt.xlabel("right gem")
 plt.axis([10.5, 36.5, 10.5, 36.5])
