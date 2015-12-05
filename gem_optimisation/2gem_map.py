@@ -184,6 +184,49 @@ artists = CS.legend_elements()[0]
 plt.gca().add_artist(plt.legend(artists, labels, loc='upper right', bbox_to_anchor=(1.0, 1.0), mode="expand", frameon = False, fontsize="small"))
 
 ax.annotate("gem cost less or equal to:", xy=(0,0), xytext=(1.025, 1.0), xycoords="axes fraction", fontsize="small")
+
+# suggested optimal upgrades
+opt_path = [[0], [0]]
+for i in range(1, 15): # balanced to 2 L14
+    opt_path[0].append(i); opt_path[1].append(i-1)
+    opt_path[0].append(i); opt_path[1].append(i)
+for i in range(16, 20): # L13 + L2* .. L5*
+    opt_path[0].append(i); opt_path[1].append(13)
+for i in range(13, 20): # to 2 L5*
+    opt_path[0].append(19); opt_path[1].append(i)
+for i in range(20, 25): # balanced to 2 L10*
+    opt_path[0].append(i); opt_path[1].append(i-1)
+    opt_path[0].append(i); opt_path[1].append(i)
+for i in range(25, 30): # to L10* + L15*
+    opt_path[0].append(i); opt_path[1].append(24)
+for i in range(25, 30): # to 2 L15*
+    opt_path[0].append(29); opt_path[1].append(i)
+for i in range(30, 35): # to L15* + L20*
+    opt_path[0].append(i); opt_path[1].append(29)
+for i in range(30, 35): # to 2 L20*
+    opt_path[0].append(34); opt_path[1].append(i)
+#for i in range(35, 40): # balanced  to 2 L25*
+#    opt_path[0].append(i); opt_path[1].append(i-1)
+#    opt_path[0].append(i); opt_path[1].append(i)
+
+opt_path1 = [ [], [] ]
+for i in range(29, 35): # to L10* + L20*
+    opt_path1[0].append(i); opt_path1[1].append(24)
+for i in range(25, 30): # to 2 L20*
+    opt_path1[0].append(34); opt_path1[1].append(i)
+
+opt_path2 = [ [], [] ]
+for i in range(35, 40): # to L20* + L25*
+    opt_path2[0].append(i); opt_path2[1].append(34)
+for i in range(35, 40): # to 2 L25*
+    opt_path2[0].append(39); opt_path2[1].append(i)
+
+for op in [ opt_path, opt_path1, opt_path2 ]:
+    plt.plot(op[0], op[1], "r:", lw=2)
+    plt.plot(op[0], op[1], "b.", lw=2)
+
+plt.gca().add_artist(plt.legend((["suggested gem\nupgrade paths", ""]), loc='right', labelspacing=-1.5, bbox_to_anchor=(1.0, 0.55), mode="expand", frameon = False, fontsize="small"))
+
 plt.ylabel("left gem")
 plt.xlabel("right gem")
 ll=10.5
@@ -201,7 +244,7 @@ for i in quality:
     rect.append(patches.Rectangle([0., 0.],1., 1., color=i[1]))
     labels.append(i[0])
 
-plt.legend(rect, labels, loc='lower right', bbox_to_anchor=(1.0, 0.), mode="expand", frameon = False, fontsize="medium")
+plt.legend(rect, labels, loc='lower right', bbox_to_anchor=(1.0, 0.), mode="expand", frameon = False, fontsize="small")
 
 #plt.show()
 plt.savefig("gem_build_opt.png", facecolor="silver")
