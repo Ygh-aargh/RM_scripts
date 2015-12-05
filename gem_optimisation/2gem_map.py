@@ -43,9 +43,9 @@ gemprop = [
 ["L20*", 230, 71804],
 ["L21*", 235, 75894],
 ["L22*", 240, 80314],
-["L23*", 245, 85084],
-#["L24*", 250, 90224],
-#["L25*", 260, 95724]
+["L23*", 245, 85094],
+["L24*", 250, 90244],
+#["L25*", 260, 95744]
 ]
 
 # gemprop[gi] = generalized gem level
@@ -186,7 +186,9 @@ plt.gca().add_artist(plt.legend(artists, labels, loc='upper right', bbox_to_anch
 ax.annotate("gem cost less or equal to:", xy=(0,0), xytext=(1.025, 1.0), xycoords="axes fraction", fontsize="small")
 plt.ylabel("left gem")
 plt.xlabel("right gem")
-plt.axis([10.5, 36.5, 10.5, 36.5])
+ll=10.5
+hh=37.5
+plt.axis([ll, hh, ll, hh])
 plt.xticks(ticks, gl)
 plt.yticks(ticks, gl)
 ax.tick_params(direction='out', length=6, width=2)
