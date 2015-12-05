@@ -209,6 +209,7 @@ for i in range(30, 35): # to 2 L20*
 #    opt_path[0].append(i); opt_path[1].append(i-1)
 #    opt_path[0].append(i); opt_path[1].append(i)
 
+#alternative paths
 opt_path1 = [ [], [] ]
 for i in range(29, 35): # to L10* + L20*
     opt_path1[0].append(i); opt_path1[1].append(24)
@@ -221,11 +222,12 @@ for i in range(35, 40): # to L20* + L25*
 for i in range(35, 40): # to 2 L25*
     opt_path2[0].append(39); opt_path2[1].append(i)
 
-for op in [ opt_path, opt_path1, opt_path2 ]:
+for op in [ opt_path ]: #, opt_path2 ]: #, opt_path1 ]:
     plt.plot(op[0], op[1], "r:", lw=2)
     plt.plot(op[0], op[1], "b.", lw=2)
 
-plt.gca().add_artist(plt.legend((["suggested gem\nupgrade paths", ""]), loc='right', labelspacing=-1.5, bbox_to_anchor=(1.0, 0.55), mode="expand", frameon = False, fontsize="small"))
+plt.gca().add_artist(plt.legend((["suggested gem\nupgrade path", ""]), loc='right', labelspacing=-1.5, bbox_to_anchor=(1.0, 0.55), mode="expand", frameon = False, fontsize="small"))
+ax.annotate("?", xy=(0,0), xytext=(.93, .93), xycoords="axes fraction", fontsize="large")
 
 plt.ylabel("left gem")
 plt.xlabel("right gem")
