@@ -226,7 +226,7 @@ for op in [ opt_path ]: #, opt_path2 ]: #, opt_path1 ]:
     plt.plot(op[0], op[1], "r:", lw=2)
     plt.plot(op[0], op[1], "b.", lw=2)
 
-plt.gca().add_artist(plt.legend((["suggested gem\nupgrade path", ""]), loc='right', labelspacing=-1.5, bbox_to_anchor=(1.0, 0.55), mode="expand", frameon = False, fontsize="small"))
+plt.gca().add_artist(plt.legend((["suggested upgrade\npath for a pair of gems", ""]), loc='right', labelspacing=-1.5, bbox_to_anchor=(1.0, 0.55), mode="expand", frameon = False, fontsize="small"))
 ax.annotate("?", xy=(0,0), xytext=(.93, .93), xycoords="axes fraction", fontsize="large")
 
 plt.ylabel("left gem")
