@@ -44,8 +44,8 @@ gemprop = [
 ["L21*", 235, 75894],
 ["L22*", 240, 80314],
 ["L23*", 245, 85094],
-["L24*", 250, 90244],
-#["L25*", 260, 95744]
+["L24*", 250, 90264],
+["L25*", 255, 95854] # guess
 ]
 
 # gemprop[gi] = generalized gem level
@@ -232,7 +232,7 @@ ax.annotate("?", xy=(0,0), xytext=(.93, .93), xycoords="axes fraction", fontsize
 plt.ylabel("left gem")
 plt.xlabel("right gem")
 ll=10.5
-hh=37.5
+hh=38.5
 plt.axis([ll, hh, ll, hh])
 plt.xticks(ticks, gl)
 plt.yticks(ticks, gl)
@@ -246,7 +246,7 @@ for i in quality:
     rect.append(patches.Rectangle([0., 0.],1., 1., color=i[1]))
     labels.append(i[0])
 
-plt.legend(rect, labels, loc='lower right', bbox_to_anchor=(1.0, 0.), mode="expand", frameon = False, fontsize="small")
+plt.legend(rect, labels, loc='lower right', bbox_to_anchor=(1.0, -0.05), mode="expand", frameon = False, fontsize="small")
 
 #plt.show()
 plt.savefig("gem_build_opt.png", facecolor="silver")
