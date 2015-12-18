@@ -1,13 +1,13 @@
 #!/usr/bin/gnuplot -persist
 se xla "L1 gems to build"
 se xtics (0, "" 64 1, "" 128 1, "" 256 1, "" 512, "" 1024, \
-        "2k" 2048, "4k" 4096, "8k" 8192, "16k" 16384)
+        "" 2048, "4k" 4096, "8k" 8192, "16k" 16384)
 se mxtics 4
 se x2tics ("" 16884 1, "" 17484 1, "" 18284 1, 19284, \
         "" 20484 1, "" 21984 1, "" 23784 1, "" 25984 1, 28584, \
         "" 31684 1, "" 35384 1, "" 39784 1, "" 44984 1, 51084, \
         "" 58284 1, "" 61284 1, "" 64524 1, "" 68024 1, 71804, \
-        "" 75894 1, "" 80314 1  )
+        "" 75894 1, "" 80314 1, "" 85094 1, "" 90264 1, 95854  )
 se yla "equivalent treasure levels"
 se ytics (0, "" 6 1, "" 8 1, "" 11 1, "" 15 1, "" 21 1, \
         30, 45, 60, 80, 100, 120, \
@@ -15,7 +15,7 @@ se ytics (0, "" 6 1, "" 8 1, "" 11 1, "" 15 1, "" 21 1, \
         "" 145 1, "" 150 1, "" 155 1, "" 160 1, 165, \
         "" 170 1, "" 175 1, "" 180 1, "" 185 1, 200, \
         "" 205 1, "" 210 1, "" 215 1, "" 220 1, 230, \
-        "" 235 1, "" 240 1  )
+        "" 235 1, "" 240 1, "" 245 1, "" 250 1, 255  )
 se pointsize 1.7
 se ke bo
 se label 1  "  L10"       at 512,    26 left
@@ -27,13 +27,14 @@ se label 6  "  L15 / L1*" at 16384, 116 left
 se label 7  "  L5*"       at 19284, 136 left
 se label 8  "  L10*"      at 28584, 161 left
 se label 9  "  L15*"      at 51084, 196 left
-se label 10 "  L20*"      at 71684, 226 left
-se label 21 "*5  for  attack"  at 2048, 220 left
-se label 22 "*3  for  defense" at 2048, 210 left
-se label 23 "*8  for  troops"  at 2048, 200 left
+se label 10 "  L20*"      at 71804, 226 left
+se label 11 "  L25*"      at 95854, 251 left
+se label 21 "*5  for  attack"  at 2048, 250 left
+se label 22 "*3  for  defense" at 2048, 240 left
+se label 23 "*8  for  troops"  at 2048, 230 left
 se te png size 800,500
 se ou "gem_build.png"
-p [:90000][:250] "gem_build" u ($2):($1) eve :::1::1 t "classic gems" w lp pt 4, "" u 2:1 eve :::2::2 t "star gems" w lp pt 3
+p [:105000][:260] "gem_build" u ($2):($1) eve :::1::1 t "classic gems" w lp pt 4, "" u 2:1 eve :::2::2 t "star gems" w lp pt 3
 se ou
 exit
 
@@ -76,3 +77,6 @@ exit
 230  71804 *
 235  75894
 240  80314
+245  85094
+250  90264
+255  95854

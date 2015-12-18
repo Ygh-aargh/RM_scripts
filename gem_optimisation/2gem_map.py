@@ -45,7 +45,8 @@ gemprop = [
 ["L22*", 240, 80314],
 ["L23*", 245, 85094],
 ["L24*", 250, 90264],
-["L25*", 255, 95854] # guess
+["L25*", 255, 95854],
+["L26*", 260, 101894] # guess
 ]
 
 # gemprop[gi] = generalized gem level
@@ -101,18 +102,17 @@ for gg in g12:
     gg.append(dgc)
     gg.append(dtl)
 
-gl = [ "L14", "L5*", "L10*", "L15*", "L20*" ]
+gl = [ "L14", "L5*", "L10*", "L15*", "L20*", "L25*" ]
 levels = []
 ticks = []
+labels = []
 for i in gl:
     for g in gemprop:
         if (g[0] == i):
-            levels.append(2*g[2])
+            if (g[2] < 90000): # exclude 2 L25* contour
+                levels.append(2*g[2])
+                labels.append("{0}".format(levels[gl.index(i)])+" = 2 "+i )
             ticks.append(g[gi])
-
-labels = []
-for i in gl:
-    labels.append("{0}".format(levels[gl.index(i)])+" = 2 "+i )
 
 for g1, g2 in [ (24, 29), (14, 19), (29, 34) ]:
     gsum = gemprop[g1][2] + gemprop[g2][2]
@@ -134,7 +134,9 @@ tl5 = ( "TL worse by  5", (0.0, 0.5, 1.0) )
 tl10 = ( "TL worse by 10", (0.0, 0.0, 0.8) )
 tl15 = ( "TL worse by 15", (0.5, 0.0, 0.2) )
 tl20 = ( "TL worse by 20", (0.3, 0.0, 0.0) )
-quality = [ opt, opt1k, opt2k, opt4k, nonopt, tl5, tl10, tl15, tl20 ]
+tl25 = ( "TL worse by 25", (0.2, 0.0, 0.0) )
+tl30 = ( "TL worse by 30", (0.1, 0.0, 0.0) )
+quality = [ opt, opt1k, opt2k, opt4k, nonopt, tl5, tl10, tl15, tl20 ] #, tl25, tl30 ]
 
 ax = plt.gca()
 for g in g12:
@@ -205,9 +207,9 @@ for i in range(30, 35): # to L15* + L20*
     opt_path[0].append(i); opt_path[1].append(29)
 for i in range(30, 35): # to 2 L20*
     opt_path[0].append(34); opt_path[1].append(i)
-#for i in range(35, 40): # balanced  to 2 L25*
-#    opt_path[0].append(i); opt_path[1].append(i-1)
-#    opt_path[0].append(i); opt_path[1].append(i)
+for i in range(35, 40): # balanced  to 2 L25*
+    opt_path[0].append(i); opt_path[1].append(i-1)
+    opt_path[0].append(i); opt_path[1].append(i)
 
 #alternative paths
 opt_path1 = [ [], [] ]
@@ -227,12 +229,12 @@ for op in [ opt_path ]: #, opt_path2 ]: #, opt_path1 ]:
     plt.plot(op[0], op[1], "b.", lw=2)
 
 plt.gca().add_artist(plt.legend((["suggested upgrade\npath for a pair of gems", ""]), loc='right', labelspacing=-1.5, bbox_to_anchor=(1.0, 0.55), mode="expand", frameon = False, fontsize="small"))
-ax.annotate("?", xy=(0,0), xytext=(.93, .93), xycoords="axes fraction", fontsize="large")
+#ax.annotate("?", xy=(0,0), xytext=(.93, .93), xycoords="axes fraction", fontsize="large")
 
 plt.ylabel("left gem")
 plt.xlabel("right gem")
 ll=10.5
-hh=38.5
+hh=39.5
 plt.axis([ll, hh, ll, hh])
 plt.xticks(ticks, gl)
 plt.yticks(ticks, gl)
