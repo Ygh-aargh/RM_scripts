@@ -5,6 +5,14 @@ if [ $# -gt 0 ] ; then
 	OUT=" -o $1"
 fi
 
+POS=" -x 60 -y 160 --width 1500 --height 770 "
+if [ $# -gt 1 ] ; then
+	if [ $2 == "-kabam" ]; then
+		POS=" -x 95 -y 135 --width 1500 --height 850 "
+	fi
+fi
+
+
 reset
 sleep 2
-recordmydesktop -x 60 -y 160 --width 1500 --height 770 -fps 5 --no-sound --on-the-fly-encoding --overwrite --no-wm-check $OUT
+recordmydesktop $POS -fps 5 --no-sound --on-the-fly-encoding --overwrite --no-wm-check $OUT
