@@ -46,7 +46,9 @@ gemprop = [
 ["L23*", 245, 85094],
 ["L24*", 250, 90264],
 ["L25*", 255, 95854],
-["L26*", 260, 101894] # guess
+["L26*", 260, 101894],
+["L27*", 265, 108424],
+["L28*", 270, 115484] # guess
 ]
 
 # gemprop[gi] = generalized gem level
@@ -109,7 +111,7 @@ labels = []
 for i in gl:
     for g in gemprop:
         if (g[0] == i):
-            if (g[2] < 90000): # exclude 2 L25* contour
+            if (g[2] < 200000): # exclude 2 L30* contour
                 levels.append(2*g[2])
                 labels.append("{0}".format(levels[gl.index(i)])+" = 2 "+i )
             ticks.append(g[gi])
@@ -234,7 +236,7 @@ plt.gca().add_artist(plt.legend((["suggested upgrade\npath for a pair of gems", 
 plt.ylabel("left gem")
 plt.xlabel("right gem")
 ll=10.5
-hh=39.5
+hh=41.5
 plt.axis([ll, hh, ll, hh])
 plt.xticks(ticks, gl)
 plt.yticks(ticks, gl)
