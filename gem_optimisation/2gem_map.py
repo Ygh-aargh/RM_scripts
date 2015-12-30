@@ -48,7 +48,8 @@ gemprop = [
 ["L25*", 255, 95854],
 ["L26*", 260, 101894],
 ["L27*", 265, 108424],
-["L28*", 270, 115484] # guess
+["L28*", 270, 115484],
+["L29*", 275, 123114] # guess
 ]
 
 # gemprop[gi] = generalized gem level
@@ -230,13 +231,13 @@ for op in [ opt_path ]: #, opt_path2 ]: #, opt_path1 ]:
     plt.plot(op[0], op[1], "r:", lw=2)
     plt.plot(op[0], op[1], "b.", lw=2)
 
-plt.gca().add_artist(plt.legend((["suggested upgrade\npath for a pair of gems", ""]), loc='right', labelspacing=-1.5, bbox_to_anchor=(1.0, 0.55), mode="expand", frameon = False, fontsize="small"))
-#ax.annotate("?", xy=(0,0), xytext=(.93, .93), xycoords="axes fraction", fontsize="large")
+plt.gca().add_artist(plt.legend((["suggested upgrade\npath for a pair of gems", ""]), loc='right', labelspacing=-1.5, bbox_to_anchor=(1.0, 0.5), mode="expand", frameon = False, fontsize="small"))
+ax.annotate("?", xy=(0,0), xytext=(.93, .93), xycoords="axes fraction", fontsize="large")
 
 plt.ylabel("left gem")
 plt.xlabel("right gem")
 ll=10.5
-hh=41.5
+hh=42.5
 plt.axis([ll, hh, ll, hh])
 plt.xticks(ticks, gl)
 plt.yticks(ticks, gl)
