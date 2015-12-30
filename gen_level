@@ -138,12 +138,13 @@ exit
 125	35280000
 126	35700000
 127
-128
+128	36960000
 129
 130
 131
 132
 133
 134	56700000
+135	59850000
 
 # awk '{n+=$2; if (NF>=2) print $1+1, $2, n, int(n/500000)+1}' gen_level | awk 'BEGIN {o=1} {if (o != $4) print old; o=$4; old=$0}' | awk 'BEGIN {print "level", "#AC"} {print $1, 10*$4}'|column -t
