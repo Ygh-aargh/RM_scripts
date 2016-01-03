@@ -49,7 +49,8 @@ gemprop = [
 ["L26*", 260, 101894],
 ["L27*", 265, 108424],
 ["L28*", 270, 115484],
-["L29*", 275, 123114] # guess
+["L29*", 275, 123114],
+["L30*", 290, 131434]
 ]
 
 # gemprop[gi] = generalized gem level
@@ -105,14 +106,14 @@ for gg in g12:
     gg.append(dgc)
     gg.append(dtl)
 
-gl = [ "L14", "L5*", "L10*", "L15*", "L20*", "L25*" ]
+gl = [ "L14", "L5*", "L10*", "L15*", "L20*", "L25*", "L30*" ]
 levels = []
 ticks = []
 labels = []
 for i in gl:
     for g in gemprop:
         if (g[0] == i):
-            if (g[2] < 200000): # exclude 2 L30* contour
+            if (g[2] < 120000): # exclude 2 L30* contour
                 levels.append(2*g[2])
                 labels.append("{0}".format(levels[gl.index(i)])+" = 2 "+i )
             ticks.append(g[gi])
@@ -213,6 +214,10 @@ for i in range(30, 35): # to 2 L20*
 for i in range(35, 40): # balanced  to 2 L25*
     opt_path[0].append(i); opt_path[1].append(i-1)
     opt_path[0].append(i); opt_path[1].append(i)
+for i in range(40, 45): # to L25* + L30*
+    opt_path[0].append(i); opt_path[1].append(39)
+for i in range(40, 45): # to 2 L30*
+    opt_path[0].append(44); opt_path[1].append(i)
 
 #alternative paths
 opt_path1 = [ [], [] ]
@@ -232,12 +237,12 @@ for op in [ opt_path ]: #, opt_path2 ]: #, opt_path1 ]:
     plt.plot(op[0], op[1], "b.", lw=2)
 
 plt.gca().add_artist(plt.legend((["suggested upgrade\npath for a pair of gems", ""]), loc='right', labelspacing=-1.5, bbox_to_anchor=(1.0, 0.5), mode="expand", frameon = False, fontsize="small"))
-ax.annotate("?", xy=(0,0), xytext=(.93, .93), xycoords="axes fraction", fontsize="large")
+#ax.annotate("?", xy=(0,0), xytext=(.93, .93), xycoords="axes fraction", fontsize="large")
 
 plt.ylabel("left gem")
 plt.xlabel("right gem")
 ll=10.5
-hh=42.5
+hh=44.5
 plt.axis([ll, hh, ll, hh])
 plt.xticks(ticks, gl)
 plt.yticks(ticks, gl)

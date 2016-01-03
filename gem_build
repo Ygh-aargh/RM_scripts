@@ -1,14 +1,14 @@
 #!/usr/bin/gnuplot -persist
 se xla "L1 gems to build"
-se xtics (0, "" 64 1, "" 128 1, "" 256 1, "" 512, "" 1024, \
-        "" 2048, "4k" 4096, "8k" 8192, "16k" 16384)
+se xtics (0, "" 64 1, "" 128 1, "" 256 1, "" 512 1, "" 1024 1, \
+        "" 2048 1, "4k" 4096, "8k" 8192, "16k" 16384)
 se mxtics 4
-se x2tics ("" 16884 1, "" 17484 1, "" 18284 1, 19284, \
-        "" 20484 1, "" 21984 1, "" 23784 1, "" 25984 1, 28584, \
+se x2tics ("" 16884 1, "" 17484 1, "" 18284 1, "19284 " 19284, \
+        "" 20484 1, "" 21984 1, "" 23784 1, "" 25984 1, "     28584" 28584, \
         "" 31684 1, "" 35384 1, "" 39784 1, "" 44984 1, 51084, \
         "" 58284 1, "" 61284 1, "" 64524 1, "" 68024 1, 71804, \
         "" 75894 1, "" 80314 1, "" 85094 1, "" 90264 1, 95854,  \
-	"" 101894 1, "" 108424 1 )
+	"" 101894 1, "" 108424 1, "" 115484 1, "" 123114 1, 131434 )
 se yla "equivalent treasure levels"
 se ytics (0, "" 6 1, "" 8 1, "" 11 1, "" 15 1, "" 21 1, \
         30, 45, 60, 80, 100, 120, \
@@ -17,26 +17,27 @@ se ytics (0, "" 6 1, "" 8 1, "" 11 1, "" 15 1, "" 21 1, \
         "" 170 1, "" 175 1, "" 180 1, "" 185 1, 200, \
         "" 205 1, "" 210 1, "" 215 1, "" 220 1, 230, \
         "" 235 1, "" 240 1, "" 245 1, "" 250 1, 255, \
-	"" 260 1, "" 265 1  )
+	"" 260 1, "" 265 1, "" 270 1, "" 275 1, 290  )
 se pointsize 1.7
 se ke bo
-se label 1  "  L10"       at 512,    26 left
-se label 2  "  L11"       at 1024,   41 left
-se label 3  "  L12"       at 2048,   56 left
-se label 4  "  L13"       at 4096,   76 left
-se label 5  "  L14"       at 8192,   96 left
-se label 6  "  L15 / L1*" at 16384, 116 left
-se label 7  "  L5*"       at 19284, 136 left
-se label 8  "  L10*"      at 28584, 161 left
-se label 9  "  L15*"      at 51084, 196 left
-se label 10 "  L20*"      at 71804, 226 left
-se label 11 "  L25*"      at 95854, 251 left
-se label 21 "*5  for  attack"  at 2048, 250 left
-se label 22 "*3  for  defense" at 2048, 240 left
-se label 23 "*8  for  troops"  at 2048, 230 left
+se label 1  " L10"       at 512,     26 left
+se label 2  " L11"       at 1024,    41 left
+se label 3  " L12"       at 2048,    56 left
+se label 4  " L13"       at 4096,    76 left
+se label 5  " L14"       at 8192,    96 left
+se label 6  " L15 / L1*" at 15384,  110 left
+se label 7  " L5*"       at 18284,  130 left
+se label 8  " L10*"      at 27584,  155 left
+se label 9  " L15*"      at 50084,  190 left
+se label 10 " L20*"      at 70804,  220 left
+se label 11 " L25*"      at 94854,  245 left
+se label 12 " L30*"      at 130434, 280 left
+se label 21 "*5  for  attack"  at 2048, 280 left
+se label 22 "*3  for  defense" at 2048, 265 left
+se label 23 "*8  for  troops"  at 2048, 250 left
 se te png size 800,500
 se ou "gem_build.png"
-p [:115000][:270] "gem_build" u ($2):($1) eve :::1::1 t "classic gems" w lp pt 4, "" u 2:1 eve :::2::2 t "star gems" w lp pt 3
+p [:140000][:300] "gem_build" u ($2):($1) eve :::1::1 t "classic gems" w lp pt 4, "" u 2:1 eve :::2::2 t "star gems" w lp pt 3
 se ou
 exit
 
@@ -84,3 +85,6 @@ exit
 255  95854 .
 260 101894
 265 108424
+270 115484
+275 123114
+290 131434 *
