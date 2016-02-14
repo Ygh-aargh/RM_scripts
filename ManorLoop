@@ -1,23 +1,34 @@
 #!/bin/bash
 
+NDEF=10
+N=$NDEF
+[ $# -ge 1 ] && N=$1
+N=$( echo $N | awk '{a=1.*$1; if (a<0) a='$NDEF'; print a}' )
+
 sleep 3
 
-for i in $( seq 11 ) ; do
-	xdotool mousemove --sync 804 645 click 1 # Manor
+for i in $( seq $N ) ; do
+	echo "Cycle: "$i
+	xdotool mousemove --sync  934 685 click 1 # Manor
 	sleep 1
-	xdotool mousemove --sync 886 613 click 1 # Summon
+	xdotool mousemove --sync 1016 653 click 1 # Summon
 	sleep 1
-	xdotool mousemove --sync 956 724 click 1 # uncheck
+	xdotool mousemove --sync 1086 764 click 1 # uncheck
 	sleep 2
-	xdotool mousemove --sync 956 764 click 1 # uncheck
-	sleep 640
-	xdotool mousemove --sync 180 495 click 1
+	xdotool mousemove --sync 1086 804 click 1 # uncheck
+	sleep 600
+	echo -n 40 ...
+	sleep 20
+	echo -n 20 ...
+	cleep 20
+	echo
+	xdotool mousemove --sync 320 425 click 1
 	sleep 2 
-	xdotool mousemove --sync 200 530 click 1 # Click to gain food/EXP
+	xdotool mousemove --sync 320 465 click 1 # Click to gain food/EXP
 	sleep 2
-	xdotool mousemove --sync 200 570 click 1
+	xdotool mousemove --sync 320 505 click 1
 	sleep 2
-	xdotool mousemove --sync 200 615 click 1
+	xdotool mousemove --sync 320 545 click 1
 	sleep 2
 	#xdotool mousemove --sync 200 650 click 1
 	sleep 15
