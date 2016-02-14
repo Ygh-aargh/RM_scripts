@@ -1,17 +1,15 @@
 #!/bin/bash
 
 OUT=""
-if [ $# -gt 0 ] ; then
-	OUT=" -o $1"
-fi
+[ $# -gt 0 ] && OUT=" -o $1"
 
-POS=" -x 60 -y 160 --width 1500 --height 770 "
+POS=" -x 210 -y 105 --width 1500 --height 890 ";
 if [ $# -gt 1 ] ; then
-	if [ $2 == "-kabam" ]; then
-		POS=" -x 95 -y 135 --width 1500 --height 850 "
-	fi
+	case $2 in
+		("-kabam") POS=" -x  95 -y 135 --width 1500 --height 850 ";;
+		("-old")   POS=" -x  60 -y 160 --width 1500 --height 770 ";;
+	esac
 fi
-
 
 reset
 sleep 2
