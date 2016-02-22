@@ -50,7 +50,17 @@ gemprop = [
 ["L27*", 265, 108424],
 ["L28*", 270, 115484],
 ["L29*", 275, 123114],
-["L30*", 290, 131434]
+["L30*", 290, 131364], # 8250 assumed
+["L31*", 295, 140344], #
+["L32*", 300, 149974], #
+["L33*", 305, 160384], #
+["L34*", 310, 171634], #
+["L35*", 320, 183784], #
+["L36*", 325, 196914], #
+["L37*", 330, 211104], #
+["L38*", 335, 226434], #
+["L39*", 340, 242994], #
+["L40*", 350, 260884], #
 ]
 
 # gemprop[gi] = generalized gem level
@@ -106,19 +116,19 @@ for gg in g12:
     gg.append(dgc)
     gg.append(dtl)
 
-gl = [ "L14", "L5*", "L10*", "L15*", "L20*", "L25*", "L30*" ]
+gl = [ "L14", "L5*", "L10*", "L15*", "L20*", "L25*", "L30*", "L35*", "L40*" ]
 levels = []
 ticks = []
 labels = []
 for i in gl:
     for g in gemprop:
         if (g[0] == i):
-            if (g[2] < 120000): # exclude 2 L30* contour
+            if (g[2] < 200000): # exclude > 2 L40* contour
                 levels.append(2*g[2])
                 labels.append("{0}".format(levels[gl.index(i)])+" = 2 "+i )
             ticks.append(g[gi])
 
-for g1, g2 in [ (24, 29), (14, 19), (29, 34) ]:
+for g1, g2 in [ (14, 19), (24, 29) ]: #, (29, 34) ]:
     gsum = gemprop[g1][2] + gemprop[g2][2]
     prev = levels[0]
     for i in levels:
@@ -218,6 +228,14 @@ for i in range(40, 45): # to L25* + L30*
     opt_path[0].append(i); opt_path[1].append(39)
 for i in range(40, 45): # to 2 L30*
     opt_path[0].append(44); opt_path[1].append(i)
+for i in range(45, 50): # to L30* + L35*
+    opt_path[0].append(i); opt_path[1].append(44)
+for i in range(45, 50): # to 2 L35*
+    opt_path[0].append(49); opt_path[1].append(i)
+for i in range(50, 55): # to L35* + L40*
+    opt_path[0].append(i); opt_path[1].append(49)
+for i in range(50, 55): # to 2 L40*
+    opt_path[0].append(54); opt_path[1].append(i)
 
 #alternative paths
 opt_path1 = [ [], [] ]
@@ -242,7 +260,7 @@ plt.gca().add_artist(plt.legend((["suggested upgrade\npath for a pair of gems", 
 plt.ylabel("left gem")
 plt.xlabel("right gem")
 ll=10.5
-hh=44.5
+hh=len(gemprop)-0.5
 plt.axis([ll, hh, ll, hh])
 plt.xticks(ticks, gl)
 plt.yticks(ticks, gl)
