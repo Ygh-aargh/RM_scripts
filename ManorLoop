@@ -20,7 +20,7 @@ for i in $( seq $N ) ; do
 	echo -n 40 ...
 	sleep 20
 	echo -n 20 ...
-	cleep 20
+	sleep 20
 	echo
 	xdotool mousemove --sync 320 425 click 1
 	sleep 2 
