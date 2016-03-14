@@ -3,75 +3,17 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
+import gemprop
 
-# gem level name, treasure level, gem count
-gemprop = [
-["L0", 0, 0],
-["L1", 1, 1],
-["L2", 2, 2],
-["L3", 3, 4],
-["L4", 4, 8],
-["L5", 6, 16],
-["L6", 8, 32],
-["L7", 11, 64],
-["L8", 15, 128],
-["L9", 21, 256],
-["L10", 30, 512],
-["L11", 45, 1024],
-["L12", 60, 2048],
-["L13", 80, 4096],
-["L14", 100, 8192],
-["L1*", 120, 16384],
-["L2*", 125, 16884],
-["L3*", 130, 17484],
-["L4*", 135, 18284],
-["L5*", 140, 19284],
-["L6*", 145, 20484],
-["L7*", 150, 21984],
-["L8*", 155, 23784],
-["L9*", 160, 25984],
-["L10*", 165, 28584],
-["L11*", 170, 31584],
-["L12*", 175, 34684],
-["L13*", 180, 37924],
-["L14*", 185, 41424],
-["L15*", 200, 45124],
-["L16*", 205, 48904],
-["L17*", 210, 52994],
-["L18*", 215, 57394],
-["L19*", 220, 62594],
-["L20*", 230, 68694],
-["L21*", 235, 75894],
-["L22*", 240, 80314],
-["L23*", 245, 85094],
-["L24*", 250, 90264],
-["L25*", 255, 95854],
-["L26*", 260, 101894],
-["L27*", 265, 108424],
-["L28*", 270, 115484],
-["L29*", 275, 123114],
-["L30*", 290, 131364],
-["L31*", 295, 140274],
-["L32*", 300, 149904],
-["L33*", 305, 160314],
-["L34*", 310, 171564], #
-["L35*", 320, 183714], #
-["L36*", 325, 196844], #
-["L37*", 330, 211034], #
-["L38*", 335, 226364], #
-["L39*", 340, 242924], #
-["L40*", 350, 260814], #
-]
-
-# gemprop[gi] = generalized gem level
+# gemprop.gemprop[gi] = generalized gem level
 gi = 3
-for g in gemprop:
-    g.append(gemprop.index(g))
+for g in gemprop.gemprop:
+    g.append(gemprop.gemprop.index(g))
 
 # all gem combinations, a bit redundant but it is small array
 g12 = []
-for g1 in gemprop:
-    for g2 in gemprop:
+for g1 in gemprop.gemprop:
+    for g2 in gemprop.gemprop:
         g12.append([g1[gi], g2[gi], g1[1]+g2[1], g1[2]+g2[2]])
 
 # g12[tl] = effective treasure level of 2 gems
@@ -90,9 +32,9 @@ for gg in g12:
         lg[gg[tl]] = gg[gc]
 
 maxstep=0
-for i in range(1, len(gemprop)-1):
-    if (gemprop[i][1]-gemprop[i-1][1] > maxstep):
-        maxstep = gemprop[i][1]-gemprop[i-1][1]
+for i in range(1, len(gemprop.gemprop)-1):
+    if (gemprop.gemprop[i][1]-gemprop.gemprop[i-1][1] > maxstep):
+        maxstep = gemprop.gemprop[i][1]-gemprop.gemprop[i-1][1]
 # maxstep = 20
 
 # now remove unoptimal things
@@ -121,7 +63,7 @@ levels = []
 ticks = []
 labels = []
 for i in gl:
-    for g in gemprop:
+    for g in gemprop.gemprop:
         if (g[0] == i):
             if (g[2] < 200000): # exclude > 2 L40* contour
                 levels.append(2*g[2])
@@ -129,13 +71,13 @@ for i in gl:
             ticks.append(g[gi])
 
 for g1, g2 in [ (14, 19) ]: #, (29, 34) ]:
-    gsum = gemprop[g1][2] + gemprop[g2][2]
+    gsum = gemprop.gemprop[g1][2] + gemprop.gemprop[g2][2]
     prev = levels[0]
     for i in levels:
         if (i > gsum and prev < gsum):
             ii = levels.index(i)
             levels.insert(ii, gsum)
-            labels.insert(ii, "{0}".format(gsum)+" = "+gemprop[g1][0]+" + "+gemprop[g2][0])
+            labels.insert(ii, "{0}".format(gsum)+" = "+gemprop.gemprop[g1][0]+" + "+gemprop.gemprop[g2][0])
             break
         prev = i
 
@@ -178,7 +120,7 @@ for g in g12:
         ax.add_patch(patches.Rectangle((g[0]-.5, g[1]-.5), 1., 1., color=c ))
 
 oversample = 5
-x = y = np.arange(-.5+.5/oversample, len(gemprop)-.5+.5/oversample, 1./oversample)
+x = y = np.arange(-.5+.5/oversample, len(gemprop.gemprop)-.5+.5/oversample, 1./oversample)
 X, Y = np.meshgrid(x, y)
 #DGC=np.empty_like(X)
 #DTL=np.empty_like(X)
@@ -257,7 +199,7 @@ plt.gca().add_artist(plt.legend((["suggested upgrade\npath for a pair of gems", 
 plt.ylabel("left gem")
 plt.xlabel("right gem")
 ll=10.5
-hh=len(gemprop)-0.5
+hh=len(gemprop.gemprop)-0.5
 plt.axis([ll, hh, ll, hh])
 plt.xticks(ticks, gl)
 plt.yticks(ticks, gl)
