@@ -85,14 +85,15 @@ opt = ( "optimum", "white" )
 opt1k = ( "$\leqslant$ opt + 1024", (0.6, 1.0, 0.6) )
 opt2k = ( "$\leqslant$ opt + 2048", (0.2, 1.0, 0.2) )
 opt4k = ( "$\leqslant$ opt + 4096", (0.0, 0.7, 0.0) )
-nonopt = ( "$>$ opt + 4096", (0.0, 0.4, 0.0) )
+opt8k = ( "$\leqslant$ opt + 8192", (0.0, 0.45, 0.0) )
+nonopt = ( "$>$ opt + 8192", (0.0, 0.2, 0.0) )
 tl5 = ( "TL worse by  5", (0.0, 0.5, 1.0) )
 tl10 = ( "TL worse by 10", (0.0, 0.0, 0.8) )
 tl15 = ( "TL worse by 15", (0.5, 0.0, 0.2) )
 tl20 = ( "TL worse by 20", (0.3, 0.0, 0.0) )
 tl25 = ( "TL worse by 25", (0.2, 0.0, 0.0) )
 tl30 = ( "TL worse by 30", (0.1, 0.0, 0.0) )
-quality = [ opt, opt1k, opt2k, opt4k, nonopt, tl5, tl10, tl15, tl20 ] #, tl25, tl30 ]
+quality = [ opt, opt1k, opt2k, opt4k, opt8k, nonopt, tl5, tl10, tl15, tl20 ] #, tl25, tl30 ]
 
 ax = plt.gca()
 for g in g12:
@@ -106,6 +107,8 @@ for g in g12:
             c = opt2k[1]
         elif (g[4] <= 4096):
             c = opt4k[1]
+        elif (g[4] <= 8192):
+            c = opt8k[1]
         else:
             c = nonopt[1]
     elif (g[5] <= 5):
