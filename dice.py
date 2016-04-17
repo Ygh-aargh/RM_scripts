@@ -37,9 +37,12 @@ for steps in set(steplist):
     stepdistr=length2steps(steps, k6)
     dictable[steps]=stepdistr
 
-print "Probabilities for single routes of length n\nn : [ single move, two moves, ..., n moves]"
+print "Probabilities for single routes of length n\n  n : one move, two moves, ..., n moves"
 for i in sorted(dictable):
-    print i, ":", dictable[i][1:]
+    pline = "%3d :" % (i)
+    for p in dictable[i][1:]:
+        pline += " %-9.3g" % (p)
+    print pline
 
 t=np.ones(1)
 for t1 in steplist:
