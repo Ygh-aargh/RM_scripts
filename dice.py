@@ -37,12 +37,20 @@ for steps in set(steplist):
     stepdistr=length2steps(steps, k6)
     dictable[steps]=stepdistr
 
-print "Probabilities for single routes of length n\n  n : one move, two moves, ..., n moves"
+print "Probabilities for single routes of length n\n  n : one move, two moves, ..., n moves\n"
 for i in sorted(dictable):
     pline = "%3d :" % (i)
+    gline = (len(pline)*' ')
+    p01 = False
     for p in dictable[i][1:]:
         pline += " %-9.3g" % (p)
+        gline += " %-9s" % (int(10*p)*'+')
+        if (p >= 0.1):
+            p01 = True
     print pline
+    if (p01):
+        print gline
+    print ""
 
 t=np.ones(1)
 for t1 in steplist:
@@ -51,5 +59,5 @@ for t1 in steplist:
 print "\nMost probable number of moves for a set of routes with lengths ",steplist,"\nn moves, probability of n moves, probability of up to n moves\n%4s %7s%% %7s%%" % ('n','p(n)','p(m<=n)')
 
 for i in range(t.size):
-    if ((t[i]> 1e-3 and abs(t[:i+1].sum()-0.5) < 0.49) or t[i]>0.01):
-        print "%4d %7.1f%% %7.1f%%" % (i, 100*t[i], 100*t[:i+1].sum())
+    if ((t[i]> 1e-3 and abs(t[:i+1].sum()-0.5) < 0.499) or t[i]>0.01):
+        print "%4d %7.1f%% %7.1f%% %s" % (i, 100*t[i], 100*t[:i+1].sum(), int(50*t[i]/t[:].max())*'+')
