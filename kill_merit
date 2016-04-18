@@ -4,7 +4,7 @@ fit [1:] f(x) "kill_merit" u ($1):($2) via a, b
 se ke le to
 se xla "M kills"
 se yla "merit"
-p [][-200:] "kill_merit" u ($1):($2) t "data", "" u ($1):(($2-f($1))*10) t "residual * 10", -200+700*sqrt(x)
+p [][:] "kill_merit" u ($1):($2) t "data", "" u ($1):(($2-f($1))*100) t "residual * 100", -200+700*sqrt(x)
 exit
 
 #Mkills	merit
@@ -42,3 +42,6 @@ exit
 29.5	3600
 39.0	4170
 63.3	5380
+193	9570
+262	11190
+293	11850
