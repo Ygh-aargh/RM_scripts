@@ -21,7 +21,7 @@ se ytics (0, "" 6 1, "" 8 1, "" 11 1, "" 15 1, "" 21 1, \
         "" 235 1, "" 240 1, "" 245 1, "" 250 1, 255, \
 	"" 260 1, "" 265 1, "" 270 1, "" 275 1, 290, \
 	"" 295 1, "" 300 1, "" 305 1, "" 310 1, 320, \
-	"" 325 1, "" 330 1, "" 335 1, "" 340 1, 350 )
+	"" 325 1, "" 330 1, "" 335 1, "" 340 1, 350, 370 )
 se pointsize 1.7
 se ke bo
 se label 1  " L10"       at 512,     26 left
@@ -43,10 +43,11 @@ se label 22 "*3  for  defense" at 4096, 325 left
 se label 23 "*8  for  troops"  at 4096, 310 left
 se te png size 1000,600
 se ou "gem_build.png"
-p [:275000][:360] "gem_build" u ($2):($1) eve :::1::1 t "classic gems" w lp pt 4, \
+p [:275000][:380] "gem_build" u ($2):($1) eve :::1::1 t "classic gems" w lp pt 4, \
   "" u 2:1 eve :::2::2 t "star gems" w lp pt 3, \
   "" u 2:1 eve :::3::3 t "star gems (not verified yet)" w p pt 3, \
-  "" u 2:1 eve :::4::4 t "pre-L140 star gems" w lp pt 1
+  "" u 2:1 eve :::4::4 t "pre-L140 star gems" w lp pt 1, \
+  "" u 2:1 eve :::5::5 t "with basic scroll (+100k vouchers)" w p pt 4
 se ou
 exit
 
@@ -122,3 +123,25 @@ exit
 220  68024
 230  71804 *
 235  75894
+
+# with scroll
+255  75894
+260  80314
+265  85094
+270  90264
+275  95854 .
+280 101894
+285 108424
+290 115484
+295 123114
+310 131434 *
+315 140344
+320 149974
+325 160314
+330 171564
+340 183714 *
+345 196844
+350 211034
+355 226364
+360 242924
+370 260814 *
