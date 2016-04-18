@@ -6,7 +6,7 @@ se grid
 se te png
 se ou "gen_level.png"
 se ke le Le rev
-p [38:][1:20000] "< awk '{n+=$2; if (NF>=2 && $1<=126) print $1+1, $2, n, (n/50000)}' gen_level | grep -v awk" \
+p [38:][1:20000] "< awk '{n+=$2; if (NF>=2 && $1<=133) print $1+1, $2, n, (n/50000)}' gen_level | grep -v awk" \
 u ($1):($4) t "from level 0", "" u ($1):($2/50000) t "from previous level"
 se ou
 exit
@@ -137,9 +137,9 @@ exit
 124	32800000
 125	33200000
 126	33600000
-127	
-128	
-129	
+127	34200000
+128	34900000
+129	35300000
 130	37800000
 131	45400000
 132	48300000
