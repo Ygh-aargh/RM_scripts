@@ -3,17 +3,17 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
-import gemprop
+from gemprop import gemprop
 
-# gemprop.gemprop[gi] = generalized gem level
+# gemprop[gi] = generalized gem level
 gi = 3
-for g in gemprop.gemprop:
-    g.append(gemprop.gemprop.index(g))
+for g in gemprop:
+    g.append(gemprop.index(g))
 
 # all gem combinations, a bit redundant but it is small array
 g12 = []
-for g1 in gemprop.gemprop:
-    for g2 in gemprop.gemprop:
+for g1 in gemprop:
+    for g2 in gemprop:
         g12.append([g1[gi], g2[gi], g1[1]+g2[1], g1[2]+g2[2]])
 
 # g12[tl] = effective treasure level of 2 gems
@@ -32,9 +32,9 @@ for gg in g12:
         lg[gg[tl]] = gg[gc]
 
 maxstep=0
-for i in range(1, len(gemprop.gemprop)-1):
-    if (gemprop.gemprop[i][1]-gemprop.gemprop[i-1][1] > maxstep):
-        maxstep = gemprop.gemprop[i][1]-gemprop.gemprop[i-1][1]
+for i in range(1, len(gemprop)-1):
+    if (gemprop[i][1]-gemprop[i-1][1] > maxstep):
+        maxstep = gemprop[i][1]-gemprop[i-1][1]
 # maxstep = 20
 
 # now remove unoptimal things
@@ -63,7 +63,7 @@ levels = []
 ticks = []
 labels = []
 for i in gl:
-    for g in gemprop.gemprop:
+    for g in gemprop:
         if (g[0] == i):
             if (g[2] < 200000): # exclude > 2 L40* contour
                 levels.append(2*g[2])
@@ -71,13 +71,13 @@ for i in gl:
             ticks.append(g[gi])
 
 for g1, g2 in [ (14, 19) ]: #, (29, 34) ]:
-    gsum = gemprop.gemprop[g1][2] + gemprop.gemprop[g2][2]
+    gsum = gemprop[g1][2] + gemprop[g2][2]
     prev = levels[0]
     for i in levels:
         if (i > gsum and prev < gsum):
             ii = levels.index(i)
             levels.insert(ii, gsum)
-            labels.insert(ii, "{0}".format(gsum)+" = "+gemprop.gemprop[g1][0]+" + "+gemprop.gemprop[g2][0])
+            labels.insert(ii, "{0}".format(gsum)+" = "+gemprop[g1][0]+" + "+gemprop[g2][0])
             break
         prev = i
 
@@ -123,7 +123,7 @@ for g in g12:
         ax.add_patch(patches.Rectangle((g[0]-.5, g[1]-.5), 1., 1., color=c ))
 
 oversample = 5
-x = y = np.arange(-.5+.5/oversample, len(gemprop.gemprop)-.5+.5/oversample, 1./oversample)
+x = y = np.arange(-.5+.5/oversample, len(gemprop)-.5+.5/oversample, 1./oversample)
 X, Y = np.meshgrid(x, y)
 #DGC=np.empty_like(X)
 #DTL=np.empty_like(X)
@@ -202,7 +202,7 @@ plt.gca().add_artist(plt.legend((["suggested upgrade\npath for a pair of gems", 
 plt.ylabel("left gem")
 plt.xlabel("right gem")
 ll=10.5
-hh=len(gemprop.gemprop)-0.5
+hh=len(gemprop)-0.5
 plt.axis([ll, hh, ll, hh])
 plt.xticks(ticks, gl)
 plt.yticks(ticks, gl)

@@ -3,15 +3,15 @@
 #import numpy as np
 #import matplotlib.pyplot as plt
 #import matplotlib.patches as patches
-import gemprop
+from gemprop import gemprop
 
 def find_possibilities(g1, g2, fg):
 
     # find all available gem combinations within the price range
     list = []
-    for gg1 in gemprop.gemprop:
+    for gg1 in gemprop:
         if (gg1[2] >= g1[2] and gg1[2] <= g1[2] + fg):
-            for gg2 in gemprop.gemprop:
+            for gg2 in gemprop:
                 if (gg2[2] >= g2[2] and gg1[2] + gg2[2] <= g1[2] + g2[2] + fg):
                     list.append([gg1[0], gg2[0], gg1[1]+gg2[1], gg1[2]+gg2[2]])
     # print list
@@ -26,7 +26,7 @@ def find_possibilities(g1, g2, fg):
             lg[gg[2]] = [gg[0], gg[1], gg[3]]
 
     # remove some expensive local peaks
-    cost = 2 * gemprop.gemprop[len(gemprop.gemprop)-1][2]
+    cost = 2 * gemprop[len(gemprop)-1][2]
     for tl in sorted(lg, reverse=True):
         if (lg[tl][2] > cost):
             # print "!",tl, lg[tl]
@@ -56,7 +56,7 @@ for g in range(6):
     gn = sys.argv[1+g]
     if (gn[0] != "L"):
         gn = "L" + gn
-    for gg in gemprop.gemprop:
+    for gg in gemprop:
         if (gn == gg[0]):
             gi[g] = gg
             break
