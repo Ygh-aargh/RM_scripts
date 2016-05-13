@@ -162,21 +162,17 @@ for i in range(25, 30): # to L10* + L15*
     opt_path[0].append(i); opt_path[1].append(24)
 for i in range(25, 30): # to 2 L15*
     opt_path[0].append(29); opt_path[1].append(i)
-for i in range(30, 35): # to L15* + L20*
+for i in range(30, 36): # to L15* + L21*
     opt_path[0].append(i); opt_path[1].append(29)
-for i in range(30, 35): # to 2 L20*
-    opt_path[0].append(34); opt_path[1].append(i)
-for i in range(35, 45): # to L20* + L30*
-    opt_path[0].append(i); opt_path[1].append(34)
-for i in range(35, 45): # to 2 L30*
+for i in range(30, 36): # to 2 L21*
+    opt_path[0].append(35); opt_path[1].append(i)
+for i in range(36, 45): # to L21* + L30*
+    opt_path[0].append(i); opt_path[1].append(35)
+for i in range(36, 45): # to 2 L30*
     opt_path[0].append(44); opt_path[1].append(i)
-for i in range(45, 50): # to L30* + L35*
+for i in range(45, 55): # to L30* + L40*
     opt_path[0].append(i); opt_path[1].append(44)
-for i in range(45, 50): # to 2 L35*
-    opt_path[0].append(49); opt_path[1].append(i)
-for i in range(50, 55): # to L35* + L40*
-    opt_path[0].append(i); opt_path[1].append(49)
-for i in range(50, 55): # to 2 L40*
+for i in range(45, 55): # to 2 L40*
     opt_path[0].append(54); opt_path[1].append(i)
 
 #alternative paths
