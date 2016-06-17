@@ -8,7 +8,8 @@ if [ $# -gt 1 ] ; then
 	case $2 in
 		("-kabam") POS=" -x  95 -y 135 --width 1500 --height 850 ";;
 		("-old")   POS=" -x  60 -y 160 --width 1500 --height 770 ";;
-		("-sl")    POS=" -x  1  -y 205 --width 1500 --height 640 ";;
+		("-sl")    POS=" -x   1 -y 205 --width 1500 --height 640 ";;
+		("-event") POS=" -x 537 -y 322 --width  845 --height 463 ";;
 	esac
 fi
 
