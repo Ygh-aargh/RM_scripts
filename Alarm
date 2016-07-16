@@ -8,7 +8,7 @@ T=$( \
 
 if [ $T -ge 0 ] ; then
 	echo "Waiting $T seconds"
-	sleep $T && kdialog --msgbox  "Stoper dopełzł do końca" &
+	sleep $T && kdialog --msgbox  "Stoper dopełzł do końca\n\n$*" &
 else
 	echo "Ignoring negative delay $T"
 fi
