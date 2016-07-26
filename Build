@@ -2,7 +2,7 @@
 
 MAX_B=16
 
-PREFERRED=8
+#PREFERRED=8
 
 sleep 3
 
