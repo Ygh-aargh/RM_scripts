@@ -6,9 +6,10 @@ T=$( \
 	awk '{s=0 ; for (i=1;i<=NF;i++) s=60*s+1*$i} END {print s}'
 )
 
-if [ $T -ge 0 ] ; then
+if [ $T -gt 0 ] ; then
 	echo "Waiting $T seconds"
 	sleep $T && kdialog --msgbox  "$*" &
 else
-	echo "Ignoring negative delay $T"
+	echo "Ignoring nonpositive delay $T"
+	echo "Usage: $0 [hours] [minues] seconds [message]"
 fi
