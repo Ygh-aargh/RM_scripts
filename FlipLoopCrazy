@@ -1,0 +1,14 @@
+#!/bin/bash
+
+sleep 3
+
+#CORR=$( xdotool getmouselocation 2>&1 | sed 's/:/ /g' | awk '/window/ {print $2, $4}' )
+CORR="860 750"
+DXDY="80 -150"
+
+for i in $( seq 200 ) ; do
+	xdotool mousemove --sync $CORR click 1 # flip card
+	sleep 0.5
+	xdotool mousemove_relative --sync $DXDY click 1
+	sleep 0.5
+done
