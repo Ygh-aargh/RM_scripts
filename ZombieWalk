@@ -1,0 +1,21 @@
+#!/bin/bash
+
+HOME_SCREEN="Ctrl+F8"
+
+if [ $# -lt 2 ] ; then
+	echo "Usage: $0 command screen_number [screen_number ...]"
+	exit 1
+fi
+
+sleep 3
+
+CMD=$1
+shift
+
+for i in $*; do
+	xdotool key $( echo $i | awk '{print "Ctrl+F"(1*$1)}' )
+	eval "$CMD"
+	sleep 2
+done
+
+xdotool key $HOME_SCREEN
