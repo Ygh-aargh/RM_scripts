@@ -1,8 +1,11 @@
 #!/usr/bin/gnuplot -persist
-se xla "level"
-se yla "amount of 50k (green) books required"
+se xla "target level of the general"
+se yla "amount of 50k (green) books required" tc rgb "#00A000"
 se log y
 se grid
+se label 1 "  1000 green books =" at 40, 6000 tc rgb "#00A000"
+se label 2 "= 500 gold books  ="  at 40, 3000 tc rgb "#A0A000"
+se label 3 "= 200 red books    "  at 40, 1500 tc rgb "#A00000"
 se te png
 se ou "gen_level.png"
 se ke le Le rev
@@ -159,10 +162,10 @@ exit
 146	101730000
 147	104500000
 148	108000000
-149	111000000.
+149	111300000
 150	116130000
 151	128260000
-152	135000000~
+152	135200000
 153	143000000.
 
 # awk '{n+=$2; if (NF>=2) print $1+1, $2, n, int(n/500000)+1}' gen_level | awk 'BEGIN {o=1} {if (o != $4) print old; o=$4; old=$0}' | awk 'BEGIN {print "level", "#AC"} {print $1, 10*$4}'|column -t
