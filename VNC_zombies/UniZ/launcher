@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# default chrome size
+export VZ_X=1050
+export VZ_Y=660
+
+# y-margin for xterms
+export VZ_XTERM_Y=130
+
+export VZ_HOME=${HOME}
+HOME=HOME vncserver -geometry $(( $VZ_X * 3 ))"x"$(( $VZ_Y * 2 + $VZ_XTERM_Y ))
+
+#ToDo implement kill
+while [ ! -e "./.kill" ] ; do
+	sleep 5
+done
+rm ./.kill
+ls -l HOME/.vnc
