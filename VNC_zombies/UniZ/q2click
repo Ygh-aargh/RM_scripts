@@ -11,17 +11,17 @@ Y=$( echo $XY | awk '{print $2}' )
 
 sleep .5
 if [ $X -le $VZ_X -a $Y -le $VZ_Y ] ; then
-  for dy in $VZ_Y 0 ; do
-    for dx in $(( $VZ_X * 2 )) $VZ_X 0 ; do
-      xdotool mousemove $SYNC  $(( $X + $dx )) $(( $Y + $dy )) click 1
-      echo -n                  $(( $X + $dx )) $(( $Y + $dy )) " "
+  for dy in $( seq $(( $VZ_NY - 1 )) -1 0 ) ; do
+    for dx in $( seq $(( $VZ_NX - 1 )) -1 0 ) ; do
+      xdotool mousemove $SYNC  $(( $X + $dx * $VZ_X )) $(( $Y + $dy * $VZ_Y )) click 1
+      echo -n                  $(( $X + $dx * $VZ_X )) $(( $Y + $dy * $VZ_Y )) " "
       sleep .1
     done
   done
   echo
-else  
+else
   echo "out of browser 1: "$X $Y
 fi
-  
-  
-  
+
+
+

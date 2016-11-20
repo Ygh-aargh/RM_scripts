@@ -7,8 +7,17 @@ export VZ_Y=660
 # y-margin for xterms
 export VZ_XTERM_Y=130
 
+# number of chromes in x and y direction
+export VZ_NX=3
+export VZ_NY=2
+
+# list of chrome personalities to load
+export VZ_LIST="zombie04 zombie05 zombie06 zombie07 zombie08 zombie09"
+export VZ_FIFO=c2x_vz_test
+
+# config for zombie VNC
 export VZ_HOME=${HOME}
-HOME=HOME vncserver -geometry $(( $VZ_X * 3 ))"x"$(( $VZ_Y * 2 + $VZ_XTERM_Y ))
+HOME=HOME vncserver -geometry $(( $VZ_X * $VZ_NX ))"x"$(( $VZ_Y * $VZ_NY + $VZ_XTERM_Y ))
 
 #ToDo implement kill
 while [ ! -e "./.kill" ] ; do
