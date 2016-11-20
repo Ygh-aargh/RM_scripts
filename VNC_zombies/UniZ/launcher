@@ -1,19 +1,18 @@
 #!/bin/bash
 
+if [ $( echo $VZ_LIST | wc -w ) != $(( $VZ_NX * $VZ_NY )) ] ; then
+        echo "number mismatch:"
+        echo $VZ_LIST" has "$( echo $VZ_LIST | wc -w )" elements"
+        echo $VZ_NX" * "$VZ_NY" = "$(( $VZ_NX * $VZ_NY ))" elements expected"
+        exit 1
+fi
+
 # default chrome size
 export VZ_X=1050
 export VZ_Y=660
 
 # y-margin for xterms
 export VZ_XTERM_Y=130
-
-# number of chromes in x and y direction
-export VZ_NX=3
-export VZ_NY=2
-
-# list of chrome personalities to load
-export VZ_LIST="zombie04 zombie05 zombie06 zombie07 zombie08 zombie09"
-export VZ_FIFO=c2x_vz_test
 
 # config for zombie VNC
 export VZ_HOME=${HOME}

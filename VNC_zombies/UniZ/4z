@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# number of chromes in x and y direction
+export VZ_NX=2
+export VZ_NY=2
+
+# list of chrome personalities to load
+export VZ_LIST="zombie00 zombie01 zombie02 zombie03"
+export VZ_FIFO=c2x_$( basename $0 )
+
+./launcher
