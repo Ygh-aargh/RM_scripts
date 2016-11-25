@@ -9,13 +9,17 @@ XY=$( xdotool getmouselocation 2>&1 | sed -n '/window/s/x:\(.*\) y:\(.*\) screen
 X=$( echo $XY | awk '{print $1}' )
 Y=$( echo $XY | awk '{print $2}' )
 
-sleep .5
+sleep .2
 if [ $X -le $VZ_X -a $Y -le $VZ_Y ] ; then
   for dy in $( seq $(( $VZ_NY - 1 )) -1 0 ) ; do
     for dx in $( seq $(( $VZ_NX - 1 )) -1 0 ) ; do
+      if [ $dx -eq 0 -a $dy -eq 0 ] ; then
+        xdotool mousemove --sync 100 100
+        sleep 0.05
+      fi
       xdotool mousemove $SYNC  $(( $X + $dx * $VZ_X )) $(( $Y + $dy * $VZ_Y )) click 1
       echo -n                  $(( $X + $dx * $VZ_X )) $(( $Y + $dy * $VZ_Y )) " "
-      sleep .1
+      sleep .05
     done
   done
   echo
