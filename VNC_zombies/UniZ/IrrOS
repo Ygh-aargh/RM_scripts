@@ -5,7 +5,7 @@ export VZ_NX=2
 export VZ_NY=1
 
 # list of chrome personalities to load
-export VZ_LIST="Irrlicht OuterShadow"
+export VZ_LIST="OuterShadow Irrlicht"
 export VZ_FIFO=c2x_$( basename $0 )
 
 ./launcher
