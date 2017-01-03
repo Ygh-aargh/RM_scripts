@@ -11,8 +11,15 @@ cat $VZ_FIFO | awk -F "," 'BEGIN {t=0;} {\
                 }
                 print $0;\
         }\
+        if ($1=="###") {\
+                b=sub("###,*",". primitives/");\
+                system($0);\
+        }\
 }'
 
 # \ : sync
 
 # ` : nosync
+
+# execute command from primitives (not protected against using ".." to escape that directory
+# echo "###,echo aqq" > c2x_IrrOS
