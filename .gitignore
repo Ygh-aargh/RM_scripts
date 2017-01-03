@@ -7,5 +7,8 @@ gem_est
 _
 gem_est.txt
 fit.log
-VNC_zombies
 .joe_state
+VNC_zombies/UniZ/.config
+VNC_zombies/UniZ/.kde
+VNC_zombies/UniZ/HOME
+VNC_zombies/UniZ/*.log
