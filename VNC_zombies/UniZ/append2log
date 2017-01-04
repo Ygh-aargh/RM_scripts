@@ -1,0 +1,8 @@
+#!/bin/bash
+
+LOG=${VZ_FIFO}".log"
+
+[ ! -e $LOG ] && exit
+
+[ $2 != 0 ] && echo $1 $2 | awk '{print "sleep "( $1 - $2 )/1000.}' >> $LOG
+echo "xdotool mousemove --sync "$( xdotool getmouselocation 2>&1 | sed -n '/window/s/x:\(.*\) y:\(.*\) screen.*/\1 \2/p' ) key grave >> $LOG

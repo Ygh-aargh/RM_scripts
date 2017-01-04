@@ -3,10 +3,16 @@
 cat $VZ_FIFO | awk -F "," 'BEGIN {t=0;} {\
         if ($1==7 && $2 == 2 && $3 == 0 && $4 == 0 && $5 == 0) {\
                 if ($6 == 94) {\
-                        if ($8-t>200) system("./q2click sync");\
+                        if ($8-t>200) {
+                                system("./q2click sync");\
+                                system("./append2log "$8" "t);\
+                        }\
                         t=$8;\
                 } else if ($6 == 49) {\
-                        if ($8-t>200) system("./q2click nosync");\
+                        if ($8-t>200) {
+                                system("./q2click");\
+                                system("./append2log "$8" "t);\
+                        }\
                         t=$8;\
                 }
                 print $0;\
