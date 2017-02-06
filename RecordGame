@@ -10,9 +10,10 @@ if [ $# -gt 1 ] ; then
 		("-old")   POS=" -x  60 -y 160 --width 1500 --height 770 ";;
 		("-sl")    POS=" -x   1 -y 205 --width 1500 --height 640 ";;
 		("-event") POS=" -x 537 -y 322 --width  845 --height 463 ";;
+		("-6z")    POS=" -x   5 -y 107 --width 1910 --height 800 ";;
 	esac
 fi
 
 reset
 sleep 2
-recordmydesktop $POS -fps 5 --no-sound --on-the-fly-encoding --overwrite --no-wm-check $OUT
+recordmydesktop $POS -fps 15 --no-sound --on-the-fly-encoding --overwrite --no-wm-check $OUT
